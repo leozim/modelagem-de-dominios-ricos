@@ -52,6 +52,7 @@ public class Produto : Entity, IAgregateRoot
     public void DebitarEstoque(int quantidadeEstoque)
     {
         if (quantidadeEstoque <= 0) quantidadeEstoque *= -1;
+        if (!PossuiEstoque(quantidadeEstoque)) throw new DomainException("Estoque insuficiente");
         QuantidadeEstoque -= quantidadeEstoque;
     }
 
@@ -80,7 +81,7 @@ public class Categoria : Entity
         Nome = nome;
         Codigo = codigo;
         
-        Validar();
+        Validar(); 
     }
 
     public override string ToString() => $"{Nome} - {Codigo}";
