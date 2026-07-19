@@ -36,4 +36,9 @@ public abstract class Entity
     {
         return (GetType().GetHashCode() * 907) + Id.GetHashCode();
     }
+
+    public override string ToString()
+    {
+        return $"{GetType().Name} [Id={Id}]";
+    }
 }
