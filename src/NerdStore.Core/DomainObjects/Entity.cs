@@ -18,4 +18,17 @@ public abstract class Entity
         
         return Id.Equals(compareTo.Id);
     }
+
+    public static bool operator ==(Entity left, Entity right)
+    {
+        if (ReferenceEquals(left, null) && ReferenceEquals(right, null)) return true;
+        if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
+
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Entity left, Entity right)
+    {
+        return !(left == right);
+    }
 }
