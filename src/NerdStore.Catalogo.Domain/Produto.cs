@@ -79,7 +79,15 @@ public class Categoria : Entity
     {
         Nome = nome;
         Codigo = codigo;
+        
+        Validar();
     }
 
     public override string ToString() => $"{Nome} - {Codigo}";
+
+    public void Validar()
+    {
+        Validacoes.ValidarSeVazio(Nome, "O campo Nome da categoria não pode estar vazio");
+        Validacoes.ValidarSeIgual(Codigo, 0, "O campo Codigo não pode ser 0");
+    }
 }
