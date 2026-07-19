@@ -31,4 +31,9 @@ public abstract class Entity
     {
         return !(left == right);
     }
+
+    public override int GetHashCode()
+    {
+        return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+    }
 }
