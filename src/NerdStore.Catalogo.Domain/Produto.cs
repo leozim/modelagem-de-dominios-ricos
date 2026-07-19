@@ -41,6 +41,22 @@ public class Produto : Entity, IAgregateRoot
         Categoria = categoria;
         CategoriaId = categoria.Id;
     }
+
+    public void AlterarDescicrao(string descricao)
+    {
+        Descricao = descricao;
+    }
+
+    public void DebitarEstoque(int quantidadeEstoque)
+    {
+        if (quantidadeEstoque <= 0) quantidadeEstoque *= -1;
+        QuantidadeEstoque -= quantidadeEstoque;
+    }
+
+    public bool PossuiEstoque(int quantidadeEstoque)
+    {
+        return QuantidadeEstoque >= quantidadeEstoque;
+    }
 }
 
 public class Categoria : Entity
