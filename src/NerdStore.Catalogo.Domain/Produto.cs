@@ -31,6 +31,8 @@ public class Produto : Entity, IAgregateRoot
         Valor = valor;
         DataCadastro = dataCadastro;
         Imagem = imagem;
+        
+        Validar();
     }
 
     public void Ativar() => Ativo = true;
