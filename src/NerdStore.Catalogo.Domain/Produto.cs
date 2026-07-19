@@ -2,7 +2,8 @@
 
 namespace NerdStore.Catalogo.Domain;
 
-public class Produto : Entity
+// Interface of aggregation: Aggregate Root
+public class Produto : Entity, IAgregateRoot
 {
 }
 
