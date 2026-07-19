@@ -14,6 +14,7 @@ public class Produto : Entity, IAgregateRoot
     public string Imagem { get; private set; }
     public int QuantidadeEstoque { get; private set; }
 
+    public Dimensoes Dimensoes { get; private set; }
     public Categoria Categoria { get; private set; }
 
     public Produto(Guid categoriaId,
@@ -22,7 +23,8 @@ public class Produto : Entity, IAgregateRoot
                    bool ativo, 
                    decimal valor, 
                    DateTime dataCadastro, 
-                   string imagem)
+                   string imagem,
+                   Dimensoes dimensoes)
     {
         CategoriaId = categoriaId;
         Nome = nome;
@@ -31,6 +33,7 @@ public class Produto : Entity, IAgregateRoot
         Valor = valor;
         DataCadastro = dataCadastro;
         Imagem = imagem;
+        Dimensoes = dimensoes;
         
         Validar();
     }
