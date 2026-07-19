@@ -35,6 +35,12 @@ public class Produto : Entity, IAgregateRoot
 
     public void Ativar() => Ativo = true;
     public void Desativar() => Ativo = false;
+
+    public void AlterarCategoria(Categoria categoria)
+    {
+        Categoria = categoria;
+        CategoriaId = categoria.Id;
+    }
 }
 
 public class Categoria : Entity
