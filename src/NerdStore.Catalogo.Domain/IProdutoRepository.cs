@@ -4,5 +4,14 @@ namespace NerdStore.Catalogo.Domain;
 
 public interface IProdutoRepository : IRepository<Produto>
 {
-    // parei em 4:21 no vídeo Persistindo com repositórios
+    Task<IEnumerable<Produto>> ObterTodos();
+    Task<Produto> ObterPorId(Guid id);
+    Task<IEnumerable<Produto>> ObterPorCategoria(int codigo);
+    Task<IEnumerable<Categoria>> ObterCategorias();
+    
+    void Adicionar(Produto produto);
+    void Atualizar(Produto produto);
+    
+    void Adicionar(Categoria categoria);
+    void Atualizar(Categoria categoria);
 }
