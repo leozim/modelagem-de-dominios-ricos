@@ -20,6 +20,8 @@ public class CatalogoApplicationContext : DbContext, IUnitOfWork
             property.SetColumnType("varchar(100)"); // evita nvarchar MAX
         }
         
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogoApplicationContext).Assembly);
+        
         base.OnModelCreating(modelBuilder);
     }
 
