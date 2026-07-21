@@ -29,7 +29,7 @@ public class ProdutoRepository : IProdutoRepository
     {
         return await _context.Produtos
             .AsNoTracking()
-            .FirstOrDefaultAsync(p => p.Id == id);
+            .FirstOrDefaultAsync(p => p.Id == id) ?? throw new InvalidOperationException();
     }
 
     public async Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
