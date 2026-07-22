@@ -10,11 +10,11 @@ public class ProdutoMapping : IEntityTypeConfiguration<Produto>
     {
         builder.Property(c => c.Nome)
             .IsRequired()
-            .HasColumnType("varchar(250");
+            .HasColumnType("varchar(250)");
 
         builder.Property(c => c.Descricao)
             .IsRequired()
-            .HasColumnType("varchar(500");
+            .HasColumnType("varchar(500)");
         
         builder.Property(c => c.Imagem)
             .IsRequired()

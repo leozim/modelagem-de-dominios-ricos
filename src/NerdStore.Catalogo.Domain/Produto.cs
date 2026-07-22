@@ -17,6 +17,8 @@ public class Produto : Entity, IAgregateRoot
     public Dimensoes Dimensoes { get; private set; }
     public Categoria Categoria { get; private set; }
     public int Codigo { get; set; }
+    
+    protected Produto() { }
 
     public Produto(
         string nome, 

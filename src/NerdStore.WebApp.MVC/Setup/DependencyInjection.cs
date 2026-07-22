@@ -17,6 +17,6 @@ public static class DependencyInjection
         services.AddScoped<IProdutoRepository, ProdutoRepository>();
         services.AddScoped<IProdutoAppService, ProdutoAppService>();
         services.AddScoped<IEstoqueService, EstoqueService>();
-        services.AddScoped<CatalogoApplicationContext>();
+        // services.AddScoped<CatalogoApplicationContext>();
     }
 }
