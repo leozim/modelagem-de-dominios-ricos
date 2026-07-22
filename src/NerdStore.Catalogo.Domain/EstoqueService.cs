@@ -3,12 +3,12 @@ using NerdStore.Core.Bus;
 
 namespace NerdStore.Catalogo.Domain;
 
-public class EstoqueServices : IEstoqueService
+public class EstoqueService : IEstoqueService
 {
     private readonly IProdutoRepository _produtoRepository;
     private readonly IMediatrHandler _bus;
 
-    public EstoqueServices(IProdutoRepository produtoRepository,
+    public EstoqueService(IProdutoRepository produtoRepository,
                            IMediatrHandler bus)
     {
         _produtoRepository = produtoRepository;
