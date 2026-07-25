@@ -7,7 +7,7 @@ namespace NerdStore.WebApp.MVC.Controllers.Admin;
 public class AdminProdutosController : Controller
 {
     private readonly IProdutoAppService _produtoAppService;
-
+    
     public AdminProdutosController(IProdutoAppService produtoAppService)
     {
         _produtoAppService = produtoAppService;
