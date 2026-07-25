@@ -1,6 +1,8 @@
-﻿namespace NerdStore.Vendas.Domain;
+﻿using NerdStore.Core.DomainObjects;
 
-public class PedidoItem
+namespace NerdStore.Vendas.Domain;
+
+public class PedidoItem : Entity
 {
     
 }

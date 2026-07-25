@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.WebApp.MVC", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Vendas.Domain", "src\NerdStore.Vendas.Domain\NerdStore.Vendas.Domain.csproj", "{82ED4A28-1A4A-4078-B088-8305B48B016A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Vendas.Application", "src\NerdStore.Vendas.Application\NerdStore.Vendas.Application.csproj", "{E08424B9-95CC-4028-8DAD-EA85A112D52A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Vendas.Data", "src\NerdStore.Vendas.Data\NerdStore.Vendas.Data.csproj", "{C66ADE77-63D8-4A20-92C5-9CC47C932D2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,8 @@ Global
 		{40BF5B42-751E-4EF5-BB48-7E876BDA22B4} = {B62CBE22-CF1E-4758-B53B-6BCFA2C2114D}
 		{D7BE0A88-717E-46CB-B115-3242CC5C36E0} = {2B8E207C-0B7F-42F9-8045-410470E3CEBC}
 		{82ED4A28-1A4A-4078-B088-8305B48B016A} = {B4FDF0E3-7C68-4390-8F72-C75ACD1B5A4B}
+		{E08424B9-95CC-4028-8DAD-EA85A112D52A} = {B4FDF0E3-7C68-4390-8F72-C75ACD1B5A4B}
+		{C66ADE77-63D8-4A20-92C5-9CC47C932D2C} = {B4FDF0E3-7C68-4390-8F72-C75ACD1B5A4B}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E6232182-501E-4F6E-8958-B092CF949289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -88,5 +94,13 @@ Global
 		{82ED4A28-1A4A-4078-B088-8305B48B016A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82ED4A28-1A4A-4078-B088-8305B48B016A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82ED4A28-1A4A-4078-B088-8305B48B016A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E08424B9-95CC-4028-8DAD-EA85A112D52A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08424B9-95CC-4028-8DAD-EA85A112D52A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08424B9-95CC-4028-8DAD-EA85A112D52A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08424B9-95CC-4028-8DAD-EA85A112D52A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C66ADE77-63D8-4A20-92C5-9CC47C932D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66ADE77-63D8-4A20-92C5-9CC47C932D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66ADE77-63D8-4A20-92C5-9CC47C932D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66ADE77-63D8-4A20-92C5-9CC47C932D2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

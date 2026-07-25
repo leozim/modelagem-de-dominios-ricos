@@ -1,6 +1,8 @@
-﻿namespace NerdStore.Vendas.Domain;
+﻿using NerdStore.Core.DomainObjects;
 
-public class Pedido
+namespace NerdStore.Vendas.Domain;
+
+public class Pedido : Entity, IAgregateRoot
 {
     
 }

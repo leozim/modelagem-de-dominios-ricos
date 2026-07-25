@@ -1,6 +1,8 @@
-﻿namespace NerdStore.Vendas.Domain;
+﻿using NerdStore.Core.DomainObjects;
 
-public class Voucher
+namespace NerdStore.Vendas.Domain;
+
+public class Voucher : Entity
 {
     
 }
