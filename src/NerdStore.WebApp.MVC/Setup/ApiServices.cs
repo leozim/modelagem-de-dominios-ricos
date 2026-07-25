@@ -25,8 +25,6 @@ public static class ApiServices
 
         builder.Services.AddControllersWithViews();
 
-        builder.Services.AddAutoMapper(typeof(DomainToDtoMappingProfile), typeof(DtoToDomainMappingProfile));
-
         builder.Services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
