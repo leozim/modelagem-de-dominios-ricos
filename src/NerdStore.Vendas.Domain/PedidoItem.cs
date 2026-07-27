@@ -19,15 +19,13 @@ public class PedidoItem : Entity
                       Guid produtoId, 
                       string produtoNome, 
                       int quantidade, 
-                      decimal valorUnitario, 
-                      Pedido pedido)
+                      decimal valorUnitario)
     {
         PedidoId = pedidoId;
         ProdutoId = produtoId;
         ProdutoNome = produtoNome;
         Quantidade = quantidade;
         ValorUnitario = valorUnitario;
-        Pedido = pedido;
     }
 
     internal void AssociarPedido(Guid pedidoId)

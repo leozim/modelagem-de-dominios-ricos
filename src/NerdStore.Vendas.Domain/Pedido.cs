@@ -20,23 +20,49 @@ public class Pedido : Entity, IAgregateRoot
     // EF Rel.
     public Voucher Voucher { get; private set; }
 
-    protected Pedido() { }
+    protected Pedido()
+    {
+        _pedidoItems = new List<PedidoItem>();
+    }
     public Pedido(int codigo, 
                   Guid clientId, 
-                  Guid? voucherId, 
                   bool voucherUtilizado, 
                   decimal desconto, 
-                  decimal valorTotal, 
-                  DateTime dataCadastro, 
-                  PedidoStatus pedidoStatus)
+                  decimal valorTotal)
     {
-        Codigo = codigo;
         ClientId = clientId;
-        VoucherId = voucherId;
         VoucherUtilizado = voucherUtilizado;
         Desconto = desconto;
         ValorTotal = valorTotal;
-        DataCadastro = dataCadastro;
-        PedidoStatus = pedidoStatus;
+        _pedidoItems = new List<PedidoItem>();
     }
+
+    public void CalcularValorTotalDesconto()
+    {
+        if (!VoucherUtilizado) return;
+
+        decimal desconto = 0;
+        var valor = ValorTotal;
+
+        if (Voucher.TipoDescontoVoucher == TipoDescontoVoucher.Porcentagem)
+        {
+            if (Voucher.Percentual.HasValue)
+            {
+                desconto = (valor * Voucher.Percentual.Value) / 100;
+                valor -= desconto;
+            }
+        }
+        else
+        {
+            if (Voucher.Percentual.HasValue)
+            {
+                desconto = Voucher.ValorDesconto.Value;
+                valor -= desconto;
+            }
+        }
+
+        ValorTotal = valor < 0 ? 0 : valor;
+        Desconto = desconto;
+    }
+    
 }
