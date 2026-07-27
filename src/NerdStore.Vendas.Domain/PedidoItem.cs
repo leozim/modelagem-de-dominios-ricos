@@ -12,6 +12,8 @@ public class PedidoItem : Entity
 
     // EF Rel.
     public Pedido Pedido { get; set; }
+    
+    protected PedidoItem() { }
 
     public PedidoItem(Guid pedidoId, 
                       Guid produtoId, 
@@ -26,5 +28,22 @@ public class PedidoItem : Entity
         Quantidade = quantidade;
         ValorUnitario = valorUnitario;
         Pedido = pedido;
+    }
+
+    internal void AssociarPedido(Guid pedidoId)
+    {
+        PedidoId = pedidoId;
+    }
+
+    public decimal CalcularValor() => Quantidade * ValorUnitario;
+
+    internal void AdicionarUnidades(int unidade)
+    {
+        Quantidade += unidade;
+    }
+
+    internal void AtualizarUnidades(int unidades)
+    {
+        Quantidade = unidades;
     }
 }
