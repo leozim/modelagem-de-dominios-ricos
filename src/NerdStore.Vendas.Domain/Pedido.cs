@@ -37,6 +37,13 @@ public class Pedido : Entity, IAgregateRoot
         _pedidoItems = new List<PedidoItem>();
     }
 
+    public void AplicarVoucher(Voucher voucher)
+    {
+        Voucher = voucher;
+        VoucherUtilizado = true;
+        CalcularValorPedido();
+    }
+    
     public void CalcularValorPedido()
     {
         ValorTotal = PedidoItems.Sum(p => p.CalcularValor());
@@ -70,5 +77,11 @@ public class Pedido : Entity, IAgregateRoot
         ValorTotal = valor < 0 ? 0 : valor;
         Desconto = desconto;
     }
-    
+
+    public bool PedidoItemExistente(PedidoItem item) => _pedidoItems.Any(p => p.ProdutoId == item.ProdutoId);
+
+    public void AdicionarItem(PedidoItem item)
+    {
+        
+    }
 }

@@ -44,4 +44,6 @@ public class PedidoItem : Entity
     {
         Quantidade = unidades;
     }
+
+    public override bool EhValido() => true;
 }
