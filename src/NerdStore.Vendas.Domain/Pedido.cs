@@ -112,4 +112,25 @@ public class Pedido : Entity, IAgregateRoot
         
         CalcularValorPedido();
     }
+
+    public void AtualizarItem(PedidoItem item)
+    {
+        if (!item.EhValido()) return;
+        item.AssociarPedido(Id);
+        
+        var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
+        
+        if (itemExistente == null) throw new DomainException("O item não pertece ao pedido");
+        
+        _pedidoItems.Remove(itemExistente);
+        _pedidoItems.Add(item);
+        
+        CalcularValorPedido();
+    }
+
+    public void AtualizarUnidades(PedidoItem item, int unidades)
+    {
+        item.AtualizarUnidades(unidades);
+        AtualizarItem(item);
+    }
 }
