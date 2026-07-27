@@ -15,7 +15,7 @@ public class Pedido : Entity, IAgregateRoot
     public DateTime DataCadastro { get; private set; }
     public PedidoStatus PedidoStatus { get; private set; }
     
-    public IReadOnlyCollection<PedidoItem> PeidoItems => _pedidoItems.AsReadOnly();
+    public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems.AsReadOnly();
     
     // EF Rel.
     public Voucher Voucher { get; private set; }
@@ -37,6 +37,12 @@ public class Pedido : Entity, IAgregateRoot
         _pedidoItems = new List<PedidoItem>();
     }
 
+    public void CalcularValorPedido()
+    {
+        ValorTotal = PedidoItems.Sum(p => p.CalcularValor());
+        CalcularValorTotalDesconto();
+    }
+    
     public void CalcularValorTotalDesconto()
     {
         if (!VoucherUtilizado) return;
