@@ -133,4 +133,36 @@ public class Pedido : Entity, IAgregateRoot
         item.AtualizarUnidades(unidades);
         AtualizarItem(item);
     }
+    
+    public void TornarRascunho()
+    {
+        PedidoStatus = PedidoStatus.Rascunho;
+    }
+
+    public void IniciarPedido()
+    {
+        PedidoStatus = PedidoStatus.Iniciado;
+    }
+
+    public void FinalizarPedido()
+    {
+        PedidoStatus = PedidoStatus.Pago;
+    }
+
+    public void CancelarPedido()
+    {
+        PedidoStatus = PedidoStatus.Cancelado;
+    }
+
+    public static class PedidoFactory
+    {
+        public static Pedido NovoPedidoRascinho(Guid clienteId)
+        {
+            return new Pedido
+            {
+                ClientId = clienteId,
+                PedidoStatus = PedidoStatus.Rascunho
+            };
+        }
+    }
 }
