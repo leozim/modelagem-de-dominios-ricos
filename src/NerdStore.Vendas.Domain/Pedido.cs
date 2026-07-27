@@ -82,6 +82,34 @@ public class Pedido : Entity, IAgregateRoot
 
     public void AdicionarItem(PedidoItem item)
     {
+        if (!item.EhValido()) return;
         
+        item.AssociarPedido(Id);
+
+        if (PedidoItemExistente(item))
+        {
+            var itemExistente = _pedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
+            itemExistente.AdicionarUnidades(item.Quantidade);
+            item = itemExistente;
+            
+            _pedidoItems.Remove(itemExistente);
+        }
+        
+        item.CalcularValor();
+        _pedidoItems.Add(item);
+        
+        CalcularValorPedido();
+    }
+
+    public void RemoverItem(PedidoItem item)
+    {
+        if (!item.EhValido()) return;
+        
+        var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
+
+        if (itemExistente == null) throw new DomainException("O item não pertence ao pedido");
+        _pedidoItems.Remove(itemExistente);
+        
+        CalcularValorPedido();
     }
 }
