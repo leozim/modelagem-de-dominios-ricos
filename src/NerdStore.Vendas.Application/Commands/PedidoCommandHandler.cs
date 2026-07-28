@@ -46,7 +46,7 @@ public class PedidoCommandHandler :
             }
         }
 
-        return true;
+        return await _pedidoRepository.UnitOfWork.Commit();
     }
 
     private bool ValidarComando(Command message)
