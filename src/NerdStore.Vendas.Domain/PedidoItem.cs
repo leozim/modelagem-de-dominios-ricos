@@ -15,13 +15,11 @@ public class PedidoItem : Entity
     
     protected PedidoItem() { }
 
-    public PedidoItem(Guid pedidoId, 
-                      Guid produtoId, 
+    public PedidoItem(Guid produtoId, 
                       string produtoNome, 
                       int quantidade, 
                       decimal valorUnitario)
     {
-        PedidoId = pedidoId;
         ProdutoId = produtoId;
         ProdutoNome = produtoNome;
         Quantidade = quantidade;
