@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NerdStore.Catalogo.Application.Services;
 using NerdStore.Catalogo.Domain;
+using NerdStore.Core.Bus;
 using NerdStore.Vendas.Application.Commands;
 
 namespace NerdStore.WebApp.MVC.Controllers;
 
-public class CarrinhoController : Controller
+public class CarrinhoController : ControllerBase
 {
     private readonly IProdutoAppService _produtoAppService;
+    private readonly IMediatorHandler _mediatorHandler;
 
-    public CarrinhoController(IProdutoAppService produtoAppService)
+    public CarrinhoController(IProdutoAppService produtoAppService, IMediatorHandler mediatorHandler)
     {
         _produtoAppService = produtoAppService;
+        _mediatorHandler = mediatorHandler;
     }
 
     public IActionResult Index()

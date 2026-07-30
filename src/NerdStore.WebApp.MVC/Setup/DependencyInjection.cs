@@ -14,7 +14,7 @@ public static class DependencyInjection
     public static void RegisterServices(this IServiceCollection services)
     {
         // Domain Buss (Mediator)
-        services.AddScoped<IMediatrHandler, MediatrHandler>();
+        services.AddScoped<IMediatorHandler, MediatorHandler>();
         
         // Catalogo
         services.AddScoped<IProdutoRepository, ProdutoRepository>();
