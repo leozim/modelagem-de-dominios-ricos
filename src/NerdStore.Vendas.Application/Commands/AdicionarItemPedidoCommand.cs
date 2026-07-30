@@ -11,7 +11,7 @@ public class AdicionarItemPedidoCommand : Command
     public int Quantidade { get; private set; }
     public decimal ValorUnitario { get; private set; }
 
-    protected AdicionarItemPedidoCommand(Guid clientId, Guid produtoId, string nome, int quantidade, decimal valorUnitario)
+    public AdicionarItemPedidoCommand(Guid clientId, Guid produtoId, string nome, int quantidade, decimal valorUnitario)
     {
         ClientId = clientId;
         ProdutoId = produtoId;

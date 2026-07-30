@@ -36,6 +36,9 @@ public class CarrinhoController : ControllerBase
         }
 
         var command = new AdicionarItemPedidoCommand(ClienteId, produto.Id, produto.Nome, quantidade, produto.Valor);
+        await _mediatorHandler.EnviarComando(command);
+        
+        // TODO: se tudo deu certo faça: algo
 
         TempData["Erro"] = "Pedido Indisponível";
         return RedirectToAction("ProdutoDetalhe", "Vitrine", new {id});
