@@ -45,7 +45,6 @@ public class PedidoCommandHandler :
                 _pedidoRepository.AdicionarItem(pedidoItem);
             }
         }
-
         return await _pedidoRepository.UnitOfWork.Commit();
     }
 
