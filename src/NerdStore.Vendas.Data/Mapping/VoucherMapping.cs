@@ -8,6 +8,17 @@ public class VoucherMapping : IEntityTypeConfiguration<Voucher>
 {
     public void Configure(EntityTypeBuilder<Voucher> builder)
     {
-        throw new NotImplementedException();
+        builder.HasKey(p => p.Id);
+        
+        builder.Property(c => c.Codigo)
+            .IsRequired()
+            .HasColumnType("varchar(100)");
+        
+        // 1 : N => Voucher : Pèdidos
+        builder.HasMany(c => c.Pedidos)
+            .WithOne(p => p.Voucher)
+            .HasForeignKey(p => p.VoucherId);
+        
+        builder.ToTable("Vouchers");
     }
 }
