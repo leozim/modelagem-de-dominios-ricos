@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace NerdStore.Vendas.Data;
 
-public class VendasCOntextFactory : IDesignTimeDbContextFactory<VendasContext>
+public class VendasContextFactory : IDesignTimeDbContextFactory<VendasContext>
 {
     public VendasContext CreateDbContext(string[] args)
     {
@@ -16,4 +16,4 @@ public class VendasCOntextFactory : IDesignTimeDbContextFactory<VendasContext>
         
         return new VendasContext(optionsBuilder.Options);
     }
-}
+}*/
