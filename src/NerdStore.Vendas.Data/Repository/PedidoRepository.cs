@@ -5,11 +5,11 @@ using NerdStore.Vendas.Domain;
 
 namespace NerdStore.Vendas.Data.Repository;
 
-public class ProdutoRepository : IPedidoRepository
+public class PedidoRepository : IPedidoRepository
 {
     private readonly VendasContext _context;
 
-    public ProdutoRepository(VendasContext context)
+    public PedidoRepository(VendasContext context)
     {
         _context = context;
     }
