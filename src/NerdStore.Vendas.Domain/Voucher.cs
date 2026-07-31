@@ -17,6 +17,8 @@ public class Voucher : Entity
     
     // EF Rel.
     public ICollection<Pedido> Pedidos { get; set; }
+    
+    protected Voucher() { }
 
     public Voucher(string codigo, decimal? percentual, decimal? valorDesconto, int quantidade, TipoDescontoVoucher tipoDescontoVoucher, DateTime dataCriacao, DateTime? dataUtilizacao, DateTime dataValidade, bool ativo, bool utilizado, ICollection<Pedido> pedidos)
     {
