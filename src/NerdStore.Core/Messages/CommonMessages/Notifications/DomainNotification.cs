@@ -16,6 +16,6 @@ public class DomainNotification : Message, INotification
         DomainNotificationId = Guid.NewGuid();
         Key = key;
         Value = value;
-        Version = value;
+        Version = 1;
     }
 }
