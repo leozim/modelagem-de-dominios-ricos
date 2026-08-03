@@ -12,14 +12,14 @@ public class ProdutoRepository : IProdutoRepository
     {
         _context = context;
     }
-    
+
     public void Dispose()
     {
-       _context?.Dispose();
+        _context?.Dispose();
     }
 
     public IUnitOfWork UnitOfWork => _context;
-    
+
     public async Task<IEnumerable<Produto>> ObterTodos()
     {
         return await _context.Produtos.AsNoTracking().ToListAsync();
@@ -64,6 +64,5 @@ public class ProdutoRepository : IProdutoRepository
     public void Atualizar(Categoria categoria)
     {
         _context.Categorias.Update(categoria);
-
     }
 }

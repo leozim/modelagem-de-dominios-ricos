@@ -4,23 +4,13 @@ namespace NerdStore.Vendas.Domain;
 
 public class Voucher : Entity
 {
-    public string Codigo { get; private set; }
-    public decimal? Percentual { get; private set; }
-    public decimal? ValorDesconto { get; private set; }
-    public int Quantidade { get; private set; }
-    public TipoDescontoVoucher TipoDescontoVoucher { get; private set; }
-    public DateTime DataCriacao { get; private set; }
-    public DateTime? DataUtilizacao { get; private set; }
-    public DateTime DataValidade { get; private set; }
-    public bool Ativo { get; private set; }
-    public bool Utilizado { get; private set; }
-    
-    // EF Rel.
-    public ICollection<Pedido> Pedidos { get; set; }
-    
-    protected Voucher() { }
+    protected Voucher()
+    {
+    }
 
-    public Voucher(string codigo, decimal? percentual, decimal? valorDesconto, int quantidade, TipoDescontoVoucher tipoDescontoVoucher, DateTime dataCriacao, DateTime? dataUtilizacao, DateTime dataValidade, bool ativo, bool utilizado, ICollection<Pedido> pedidos)
+    public Voucher(string codigo, decimal? percentual, decimal? valorDesconto, int quantidade,
+        TipoDescontoVoucher tipoDescontoVoucher, DateTime dataCriacao, DateTime? dataUtilizacao, DateTime dataValidade,
+        bool ativo, bool utilizado, ICollection<Pedido> pedidos)
     {
         Codigo = codigo;
         Percentual = percentual;
@@ -34,4 +24,18 @@ public class Voucher : Entity
         Utilizado = utilizado;
         Pedidos = pedidos;
     }
+
+    public string Codigo { get; private set; }
+    public decimal? Percentual { get; private set; }
+    public decimal? ValorDesconto { get; private set; }
+    public int Quantidade { get; private set; }
+    public TipoDescontoVoucher TipoDescontoVoucher { get; private set; }
+    public DateTime DataCriacao { get; private set; }
+    public DateTime? DataUtilizacao { get; private set; }
+    public DateTime DataValidade { get; private set; }
+    public bool Ativo { get; private set; }
+    public bool Utilizado { get; private set; }
+
+    // EF Rel.
+    public ICollection<Pedido> Pedidos { get; set; }
 }

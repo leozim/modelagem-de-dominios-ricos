@@ -5,30 +5,17 @@ namespace NerdStore.Vendas.Domain;
 public class Pedido : Entity, IAgregateRoot
 {
     private readonly List<PedidoItem> _pedidoItems;
-    
-    public int Codigo { get; private set; }
-    public Guid ClientId { get; private set; }
-    public Guid? VoucherId { get; private set; }
-    public bool VoucherUtilizado { get; private set; }
-    public decimal Desconto { get; private set; }
-    public decimal ValorTotal { get; private set; }
-    public DateTime DataCadastro { get; private set; }
-    public PedidoStatus PedidoStatus { get; private set; }
-    
-    public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems.AsReadOnly();
-    
-    // EF Rel.
-    public Voucher Voucher { get; private set; }
 
     protected Pedido()
     {
         _pedidoItems = new List<PedidoItem>();
     }
-    public Pedido(int codigo, 
-                  Guid clientId, 
-                  bool voucherUtilizado, 
-                  decimal desconto, 
-                  decimal valorTotal)
+
+    public Pedido(int codigo,
+        Guid clientId,
+        bool voucherUtilizado,
+        decimal desconto,
+        decimal valorTotal)
     {
         ClientId = clientId;
         VoucherUtilizado = voucherUtilizado;
@@ -37,19 +24,33 @@ public class Pedido : Entity, IAgregateRoot
         _pedidoItems = new List<PedidoItem>();
     }
 
+    public int Codigo { get; private set; }
+    public Guid ClientId { get; private set; }
+    public Guid? VoucherId { get; private set; }
+    public bool VoucherUtilizado { get; private set; }
+    public decimal Desconto { get; private set; }
+    public decimal ValorTotal { get; private set; }
+    public DateTime DataCadastro { get; private set; }
+    public PedidoStatus PedidoStatus { get; private set; }
+
+    public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems.AsReadOnly();
+
+    // EF Rel.
+    public Voucher Voucher { get; private set; }
+
     public void AplicarVoucher(Voucher voucher)
     {
         Voucher = voucher;
         VoucherUtilizado = true;
         CalcularValorPedido();
     }
-    
+
     public void CalcularValorPedido()
     {
         ValorTotal = PedidoItems.Sum(p => p.CalcularValor());
         CalcularValorTotalDesconto();
     }
-    
+
     public void CalcularValorTotalDesconto()
     {
         if (!VoucherUtilizado) return;
@@ -61,7 +62,7 @@ public class Pedido : Entity, IAgregateRoot
         {
             if (Voucher.Percentual.HasValue)
             {
-                desconto = (valor * Voucher.Percentual.Value) / 100;
+                desconto = valor * Voucher.Percentual.Value / 100;
                 valor -= desconto;
             }
         }
@@ -78,12 +79,15 @@ public class Pedido : Entity, IAgregateRoot
         Desconto = desconto;
     }
 
-    public bool PedidoItemExistente(PedidoItem item) => _pedidoItems.Any(p => p.ProdutoId == item.ProdutoId);
+    public bool PedidoItemExistente(PedidoItem item)
+    {
+        return _pedidoItems.Any(p => p.ProdutoId == item.ProdutoId);
+    }
 
     public void AdicionarItem(PedidoItem item)
     {
         if (!item.EhValido()) return;
-        
+
         item.AssociarPedido(Id);
 
         if (PedidoItemExistente(item))
@@ -91,25 +95,25 @@ public class Pedido : Entity, IAgregateRoot
             var itemExistente = _pedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
             itemExistente.AdicionarUnidades(item.Quantidade);
             item = itemExistente;
-            
+
             _pedidoItems.Remove(itemExistente);
         }
-        
+
         item.CalcularValor();
         _pedidoItems.Add(item);
-        
+
         CalcularValorPedido();
     }
 
     public void RemoverItem(PedidoItem item)
     {
         if (!item.EhValido()) return;
-        
+
         var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
 
         if (itemExistente == null) throw new DomainException("O item não pertence ao pedido");
         _pedidoItems.Remove(itemExistente);
-        
+
         CalcularValorPedido();
     }
 
@@ -117,14 +121,14 @@ public class Pedido : Entity, IAgregateRoot
     {
         if (!item.EhValido()) return;
         item.AssociarPedido(Id);
-        
+
         var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
-        
+
         if (itemExistente == null) throw new DomainException("O item não pertece ao pedido");
-        
+
         _pedidoItems.Remove(itemExistente);
         _pedidoItems.Add(item);
-        
+
         CalcularValorPedido();
     }
 
@@ -133,7 +137,7 @@ public class Pedido : Entity, IAgregateRoot
         item.AtualizarUnidades(unidades);
         AtualizarItem(item);
     }
-    
+
     public void TornarRascunho()
     {
         PedidoStatus = PedidoStatus.Rascunho;

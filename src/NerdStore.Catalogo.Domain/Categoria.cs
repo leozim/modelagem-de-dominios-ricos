@@ -4,23 +4,28 @@ namespace NerdStore.Catalogo.Domain;
 
 public class Categoria : Entity
 {
-    public string Nome { get; private set; }
-    public int Codigo { get; private set; }
-    
-    // EF Relation
-    public ICollection<Produto> Produtos { get; set; }  
-    
-    protected Categoria() { }
+    protected Categoria()
+    {
+    }
 
     public Categoria(string nome, int codigo)
     {
         Nome = nome;
         Codigo = codigo;
-        
-        Validar(); 
+
+        Validar();
     }
 
-    public override string ToString() => $"{Nome} - {Codigo}";
+    public string Nome { get; }
+    public int Codigo { get; }
+
+    // EF Relation
+    public ICollection<Produto> Produtos { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Nome} - {Codigo}";
+    }
 
     public void Validar()
     {

@@ -4,15 +4,14 @@ namespace NerdStore.Catalogo.Application.DTOs;
 
 public class ProdutoDto
 {
-    [Key]
-    public Guid Id { get; set; }
-    
+    [Key] public Guid Id { get; set; }
+
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public Guid CategoriaId { get; set; }
-    
+
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public string Nome { get; set; }
-    
+
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public string Descricao { get; set; }
 
@@ -21,7 +20,7 @@ public class ProdutoDto
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public decimal Valor { get; set; }
-    
+
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public DateTime DataCadastro { get; set; }
 
@@ -39,7 +38,7 @@ public class ProdutoDto
     [Range(1, int.MaxValue, ErrorMessage = "O campo {0} precisa ter o valor mínimo de {1}")]
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public int Largura { get; set; }
-    
+
     [Range(1, int.MaxValue, ErrorMessage = "O campo {0} deve ter o valor mínimo de {1}")]
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public int Profundidade { get; set; }

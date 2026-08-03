@@ -34,17 +34,14 @@ public class PedidoCommandHandler :
             pedido.AdicionarItem(pedidoItem);
 
             if (pedidoItemExistente)
-            {
                 _pedidoRepository.AtualizarItem(
                     pedido
                         .PedidoItems
                         .FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId));
-            }
             else
-            {
                 _pedidoRepository.AdicionarItem(pedidoItem);
-            }
         }
+
         return await _pedidoRepository.UnitOfWork.Commit();
     }
 
@@ -56,7 +53,7 @@ public class PedidoCommandHandler :
         {
             // lançar evento de um erro
         }
-        
+
         return false;
     }
 }

@@ -13,11 +13,11 @@ public class PedidoItemMapping : IEntityTypeConfiguration<PedidoItem>
         builder.Property(c => c.ProdutoNome)
             .IsRequired()
             .HasColumnType("varchar(250)");
-        
+
         // 1 : N => Pedido : Pagamento
         builder.HasOne(c => c.Pedido)
             .WithMany(c => c.PedidoItems);
-        
+
         builder.ToTable("PedidoItems");
     }
 }

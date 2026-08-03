@@ -2,20 +2,20 @@
 
 public abstract class Entity
 {
-    public Guid Id { get; set; }
-
     protected Entity()
     {
         Id = Guid.NewGuid();
     }
+
+    public Guid Id { get; set; }
 
     public override bool Equals(object obj)
     {
         var compareTo = obj as Entity;
 
         if (ReferenceEquals(this, compareTo)) return true;
-        if(ReferenceEquals(null, compareTo)) return false;
-        
+        if (ReferenceEquals(null, compareTo)) return false;
+
         return Id.Equals(compareTo.Id);
     }
 
@@ -34,7 +34,7 @@ public abstract class Entity
 
     public override int GetHashCode()
     {
-        return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+        return GetType().GetHashCode() * 907 + Id.GetHashCode();
     }
 
     public override string ToString()

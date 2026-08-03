@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NerdStore.Catalogo.Domain;
 using NerdStore.Core.Data;
 using NerdStore.Vendas.Domain;
 
@@ -20,7 +19,7 @@ public class PedidoRepository : IPedidoRepository
     }
 
     public IUnitOfWork UnitOfWork => _context;
-    
+
     public async Task<Pedido> ObterPorId(Guid id)
     {
         return await _context.Pedidos.FindAsync(id);
@@ -34,17 +33,14 @@ public class PedidoRepository : IPedidoRepository
     public async Task<Pedido> ObterPedidoRascunhoPorClienteId(Guid clienteId)
     {
         var pedido = await _context.Pedidos
-            .FirstOrDefaultAsync(p => 
+            .FirstOrDefaultAsync(p =>
                 p.ClientId == clienteId && p.PedidoStatus == PedidoStatus.Rascunho);
 
         if (pedido == null) return null;
 
         await _context.Entry(pedido).Collection(i => i.PedidoItems).LoadAsync();
 
-        if (pedido.VoucherId != null)
-        {
-            await _context.Entry(pedido).Reference(i => i.Voucher).LoadAsync();
-        }
+        if (pedido.VoucherId != null) await _context.Entry(pedido).Reference(i => i.Voucher).LoadAsync();
 
         return pedido;
     }

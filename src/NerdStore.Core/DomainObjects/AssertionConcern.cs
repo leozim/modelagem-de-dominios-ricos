@@ -2,4 +2,5 @@
 
 // validações
 public class AssertionConcern
-{  }
+{
+}

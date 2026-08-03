@@ -15,7 +15,7 @@ public class ProdutoMapping : IEntityTypeConfiguration<Produto>
         builder.Property(c => c.Descricao)
             .IsRequired()
             .HasColumnType("varchar(500)");
-        
+
         builder.Property(c => c.Imagem)
             .IsRequired()
             .HasColumnType("varchar(250)");
@@ -25,7 +25,7 @@ public class ProdutoMapping : IEntityTypeConfiguration<Produto>
             cm.Property(c => c.Altura)
                 .HasColumnName("Altura")
                 .HasColumnType("int");
-            
+
             cm.Property(c => c.Largura)
                 .HasColumnName("Largura")
                 .HasColumnType("int");
@@ -34,7 +34,7 @@ public class ProdutoMapping : IEntityTypeConfiguration<Produto>
                 .HasColumnName("Profundidade")
                 .HasColumnType("int");
         });
-        
+
         builder.ToTable("Produtos");
     }
 }

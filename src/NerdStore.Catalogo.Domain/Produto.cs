@@ -5,29 +5,18 @@ namespace NerdStore.Catalogo.Domain;
 // Interface of aggregation: Aggregate Root
 public class Produto : Entity, IAgregateRoot
 {
-    public Guid CategoriaId { get; private set; }
-    public string Nome { get; private set; }
-    public string Descricao { get; private set; }
-    public bool Ativo { get; private set; }
-    public decimal Valor { get; private set; }
-    public DateTime DataCadastro { get; private set; }
-    public string Imagem { get; private set; }
-    public int QuantidadeEstoque { get; private set; }
-
-    public Dimensoes Dimensoes { get; private set; }
-    public Categoria Categoria { get; private set; }
-    public int Codigo { get; set; }
-    
-    protected Produto() { }
+    protected Produto()
+    {
+    }
 
     public Produto(
-        string nome, 
-        string descricao, 
-        bool ativo, 
-        decimal valor, 
-        Guid categoriaId, 
-        DateTime dataCadastro, 
-        string imagem, 
+        string nome,
+        string descricao,
+        bool ativo,
+        decimal valor,
+        Guid categoriaId,
+        DateTime dataCadastro,
+        string imagem,
         Dimensoes dimensoes)
     {
         CategoriaId = categoriaId;
@@ -42,8 +31,28 @@ public class Produto : Entity, IAgregateRoot
         Validar();
     }
 
-    public void Ativar() => Ativo = true;
-    public void Desativar() => Ativo = false;
+    public Guid CategoriaId { get; private set; }
+    public string Nome { get; }
+    public string Descricao { get; private set; }
+    public bool Ativo { get; private set; }
+    public decimal Valor { get; }
+    public DateTime DataCadastro { get; private set; }
+    public string Imagem { get; }
+    public int QuantidadeEstoque { get; private set; }
+
+    public Dimensoes Dimensoes { get; private set; }
+    public Categoria Categoria { get; private set; }
+    public int Codigo { get; set; }
+
+    public void Ativar()
+    {
+        Ativo = true;
+    }
+
+    public void Desativar()
+    {
+        Ativo = false;
+    }
 
     public void AlterarCategoria(Categoria categoria)
     {
@@ -62,7 +71,7 @@ public class Produto : Entity, IAgregateRoot
         if (!PossuiEstoque(quantidadeEstoque)) throw new DomainException("Estoque insuficiente");
         QuantidadeEstoque -= quantidadeEstoque;
     }
-    
+
     public void ReporEstoque(int quantidade)
     {
         QuantidadeEstoque += quantidade;

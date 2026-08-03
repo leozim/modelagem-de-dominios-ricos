@@ -4,21 +4,14 @@ namespace NerdStore.Vendas.Domain;
 
 public class PedidoItem : Entity
 {
-    public Guid PedidoId { get; private set; }
-    public Guid ProdutoId { get; private set; }
-    public string ProdutoNome { get; private set; }
-    public int Quantidade { get; private set; }
-    public decimal ValorUnitario { get; private set; }
+    protected PedidoItem()
+    {
+    }
 
-    // EF Rel.
-    public Pedido Pedido { get; set; }
-    
-    protected PedidoItem() { }
-
-    public PedidoItem(Guid produtoId, 
-                      string produtoNome, 
-                      int quantidade, 
-                      decimal valorUnitario)
+    public PedidoItem(Guid produtoId,
+        string produtoNome,
+        int quantidade,
+        decimal valorUnitario)
     {
         ProdutoId = produtoId;
         ProdutoNome = produtoNome;
@@ -26,12 +19,24 @@ public class PedidoItem : Entity
         ValorUnitario = valorUnitario;
     }
 
+    public Guid PedidoId { get; private set; }
+    public Guid ProdutoId { get; private set; }
+    public string ProdutoNome { get; private set; }
+    public int Quantidade { get; private set; }
+    public decimal ValorUnitario { get; }
+
+    // EF Rel.
+    public Pedido Pedido { get; set; }
+
     internal void AssociarPedido(Guid pedidoId)
     {
         PedidoId = pedidoId;
     }
 
-    public decimal CalcularValor() => Quantidade * ValorUnitario;
+    public decimal CalcularValor()
+    {
+        return Quantidade * ValorUnitario;
+    }
 
     internal void AdicionarUnidades(int unidade)
     {
@@ -43,5 +48,8 @@ public class PedidoItem : Entity
         Quantidade = unidades;
     }
 
-    public override bool EhValido() => true;
+    public override bool EhValido()
+    {
+        return true;
+    }
 }

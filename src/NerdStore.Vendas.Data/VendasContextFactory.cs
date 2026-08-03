@@ -11,9 +11,10 @@ public class VendasContextFactory : IDesignTimeDbContextFactory<VendasContext>
 
         var connectionString =
             "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=NerdStoreDb;Integrated Security=True;pooling=True";
-        
+
         optionsBuilder.UseSqlServer(connectionString);
-        
+
         return new VendasContext(optionsBuilder.Options);
     }
 }*/
+

@@ -5,12 +5,6 @@ namespace NerdStore.Vendas.Application.Commands;
 
 public class AdicionarItemPedidoCommand : Command
 {
-    public Guid ClientId { get; private set; }
-    public Guid ProdutoId { get; private set; }
-    public string Nome { get; private set; }
-    public int Quantidade { get; private set; }
-    public decimal ValorUnitario { get; private set; }
-
     public AdicionarItemPedidoCommand(Guid clientId, Guid produtoId, string nome, int quantidade, decimal valorUnitario)
     {
         ClientId = clientId;
@@ -19,6 +13,12 @@ public class AdicionarItemPedidoCommand : Command
         Quantidade = quantidade;
         ValorUnitario = valorUnitario;
     }
+
+    public Guid ClientId { get; }
+    public Guid ProdutoId { get; }
+    public string Nome { get; }
+    public int Quantidade { get; }
+    public decimal ValorUnitario { get; }
 
     public override bool EhValido()
     {

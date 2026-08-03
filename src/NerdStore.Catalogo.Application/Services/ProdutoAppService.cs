@@ -7,13 +7,13 @@ namespace NerdStore.Catalogo.Application.Services;
 
 public class ProdutoAppService : IProdutoAppService
 {
-    private readonly IProdutoRepository _produtoRepository;
-    private readonly IMapper _mapper;
     private readonly IEstoqueService _estoqueService;
+    private readonly IMapper _mapper;
+    private readonly IProdutoRepository _produtoRepository;
 
-    public ProdutoAppService(IProdutoRepository produtoRepository, 
-                             IMapper mapper, 
-                             IEstoqueService estoqueService)
+    public ProdutoAppService(IProdutoRepository produtoRepository,
+        IMapper mapper,
+        IEstoqueService estoqueService)
     {
         _produtoRepository = produtoRepository;
         _mapper = mapper;
@@ -58,26 +58,21 @@ public class ProdutoAppService : IProdutoAppService
     {
         var produto = _mapper.Map<Produto>(produtoDto);
         _produtoRepository.Atualizar(produto);
-        
+
         await _produtoRepository.UnitOfWork.Commit();
     }
 
     public async Task<ProdutoDto> DebitarEstoque(Guid id, int quantidade)
     {
         if (!_estoqueService.DebitarEstoque(id, quantidade).Result)
-        {
             throw new DomainException("Falha ao debitar estoque");
-        }
 
         return _mapper.Map<ProdutoDto>(await _produtoRepository.ObterPorId(id));
     }
 
     public async Task<ProdutoDto> ReporEstoque(Guid id, int quantidade)
     {
-        if (!_estoqueService.ReporEstoque(id, quantidade).Result)
-        {
-            throw new DomainException("Falha ao debitar estoque");
-        }
+        if (!_estoqueService.ReporEstoque(id, quantidade).Result) throw new DomainException("Falha ao debitar estoque");
 
         return _mapper.Map<ProdutoDto>(await _produtoRepository.ObterPorId(id));
     }

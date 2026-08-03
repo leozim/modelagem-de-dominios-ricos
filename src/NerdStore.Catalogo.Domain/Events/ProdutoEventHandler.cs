@@ -14,7 +14,7 @@ public class ProdutoEventHandler : INotificationHandler<ProdutoAbaixoEstoqueEven
     public async Task Handle(ProdutoAbaixoEstoqueEvent mensagem, CancellationToken cancellationToken)
     {
         var produto = await _produtoRepository.ObterPorId(mensagem.AggregateId);
-        
+
         // Enviar um email para aquisição de mais produtos.
     }
 }
