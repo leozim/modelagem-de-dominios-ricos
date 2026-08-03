@@ -18,4 +18,14 @@ public abstract class ControllerBase : Controller
         _notifications = (DomainNotificationHandler)notifications;
         _mediatorHandler = mediatorHandler;
     }
+
+    protected bool OperacaoValida()
+    {
+        return !_notifications.TemNotificacao();
+    }
+
+    protected void NotificarErro(string codigo, string mensagem)
+    {
+        _mediatorHandler.PublicarNotificacao(new DomainNotification(codigo, mensagem));
+    }
 }

@@ -44,6 +44,10 @@ public class CarrinhoController : ControllerBase
         await _mediatorHandler.EnviarComando(command);
         
         // TODO: se tudo deu certo faça: algo
+        if (OperacaoValida())
+        {
+            return RedirectToAction("Index");
+        }
 
         TempData["Erro"] = "Pedido Indisponível";
         return RedirectToAction("ProdutoDetalhe", "Vitrine", new {id});
