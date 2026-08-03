@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NerdStore.Catalogo.Application.Services;
 using NerdStore.Catalogo.Domain;
-using NerdStore.Core.Bus;
+using NerdStore.Core.Communication.Mediator;
 using NerdStore.Vendas.Application.Commands;
 
 namespace NerdStore.WebApp.MVC.Controllers;

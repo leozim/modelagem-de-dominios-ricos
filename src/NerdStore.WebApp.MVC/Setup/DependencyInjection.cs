@@ -4,7 +4,7 @@ using NerdStore.Catalogo.Data;
 using NerdStore.Catalogo.Data.Repository;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
-using NerdStore.Core.Bus;
+using NerdStore.Core.Communication.Mediator;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Vendas.Data.Repository;
 using NerdStore.Vendas.Domain;
