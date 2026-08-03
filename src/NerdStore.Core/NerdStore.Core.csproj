@@ -13,7 +13,6 @@
 
     <ItemGroup>
       <Folder Include="Messages\CommonMessages\IntegrationEvents\" />
-      <Folder Include="Messages\CommonMessages\Notifications\" />
     </ItemGroup>
 
 </Project>
