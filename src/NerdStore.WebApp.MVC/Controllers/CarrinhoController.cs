@@ -49,7 +49,7 @@ public class CarrinhoController : ControllerBase
             return RedirectToAction("Index");
         }
 
-        TempData["Erro"] = "Pedido Indisponível";
+        TempData["Erros"] = ObterMensagensErro();
         return RedirectToAction("ProdutoDetalhe", "Vitrine", new {id});
     }
 }

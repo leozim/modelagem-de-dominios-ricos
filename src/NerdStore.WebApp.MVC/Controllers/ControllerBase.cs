@@ -24,6 +24,11 @@ public abstract class ControllerBase : Controller
         return !_notifications.TemNotificacao();
     }
 
+    protected IEnumerable<string> ObterMensagensErro()
+    {
+        return _notifications.ObterNotifications().Select(n => n.Value).ToList();
+    }
+
     protected void NotificarErro(string codigo, string mensagem)
     {
         _mediatorHandler.PublicarNotificacao(new DomainNotification(codigo, mensagem));
