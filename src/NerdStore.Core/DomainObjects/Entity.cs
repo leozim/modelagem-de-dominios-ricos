@@ -25,9 +25,9 @@ public abstract class Entity
         _notificacoes?.Remove(evento);
     }
 
-    public void LimparEventos(Event eventItem)
+    public void LimparEventos()
     {
-        _notificacoes?.Remove(eventItem);
+        _notificacoes?.Clear();
     }
 
     public override bool Equals(object obj)

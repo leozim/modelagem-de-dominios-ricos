@@ -2,6 +2,7 @@
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Vendas.Application.Events;
 using NerdStore.Vendas.Domain;
 
 namespace NerdStore.Vendas.Application.Commands;
@@ -32,6 +33,7 @@ public class PedidoCommandHandler :
             pedido.AdicionarItem(pedidoItem);
 
             _pedidoRepository.Adicionar(pedido);
+            pedido.AdicionarEvento(new PedidoRascunhoIniciadoEvent(message.ClientId, message.ProdutoId));
         }
         else
         {
