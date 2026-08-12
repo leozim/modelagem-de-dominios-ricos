@@ -29,8 +29,8 @@ public class VendasContext : DbContext, IUnitOfWork
 
             if (entry.State == EntityState.Modified) entry.Property("DataCadastro").IsModified = false;
         }
-        
-        
+
+        await _mediatorHandler.PublicarEventos(this);
         
         return await base.SaveChangesAsync() > 0;
     }
