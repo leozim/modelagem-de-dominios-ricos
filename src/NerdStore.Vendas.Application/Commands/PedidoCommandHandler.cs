@@ -51,7 +51,7 @@ public class PedidoCommandHandler :
             pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClientId, pedido.Id, pedido.ValorTotal));
         }
         
-        pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClientId, pedido.Id, message.ProdutoId, message.ValorUnitario, message.Quantidade));
+        pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClientId, pedido.Id, message.ProdutoId, message.Nome, message.ValorUnitario, message.Quantidade));
         return await _pedidoRepository.UnitOfWork.Commit();
     }
 
