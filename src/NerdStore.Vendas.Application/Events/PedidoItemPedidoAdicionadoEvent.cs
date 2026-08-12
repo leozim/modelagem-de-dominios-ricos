@@ -16,6 +16,7 @@ public class PedidoItemPedidoAdicionadoEvent : Event
                                            decimal valorUnitario, 
                                            int quantidade)
     {
+        AggregateId = pedidoId;
         ClienteId = clienteId;
         PedidoId = pedidoId;
         ProdutoId = produtoId;

@@ -9,6 +9,7 @@ public class PedidoRascunhoIniciadoEvent : Event
 
     public PedidoRascunhoIniciadoEvent(Guid clienteId, Guid pedidoId)
     {
+        AggregateId = pedidoId;
         ClienteId = clienteId;
         PedidoId = pedidoId;
     }
