@@ -48,6 +48,26 @@ public class PedidoQueries : IPedidoQueries
 
     public async Task<IEnumerable<PedidoDto>> ObterPedidosCliente(Guid clienteId)
     {
-        throw new NotImplementedException();
+        var pedidos = await _pedidoRepository.ObterListaPorClienteId(clienteId);
+
+        pedidos = pedidos.Where(p => p.PedidoStatus == PedidoStatus.Pago || p.PedidoStatus == PedidoStatus.Cancelado)
+            .OrderByDescending(p => p.Codigo);
+        
+        if (!pedidos.Any()) return null;
+
+        var pedidosDto = new List<PedidoDto>();
+
+        foreach (var pedido in pedidos)
+        {
+            pedidosDto.Add(new PedidoDto
+            {
+                ValorTotal = pedido.ValorTotal,
+                PedidoStatus = (int)pedido.PedidoStatus,
+                Codigo = pedido.Codigo,
+                DataCadastro = pedido.DataCadastro
+            });
+        }
+        
+        return pedidosDto;
     }
 }
