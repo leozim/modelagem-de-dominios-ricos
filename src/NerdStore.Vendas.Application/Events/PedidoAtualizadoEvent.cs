@@ -10,6 +10,7 @@ public class PedidoAtualizadoEvent : Event
 
     public PedidoAtualizadoEvent(Guid clienteId, Guid pedidoId, decimal valorTotal)
     {
+        AggregateId = pedidoId;
         ClienteId = clienteId;
         PedidoId = pedidoId;
         ValorTotal = valorTotal;
