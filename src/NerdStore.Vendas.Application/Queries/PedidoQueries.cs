@@ -33,7 +33,7 @@ public class PedidoQueries : IPedidoQueries
 
         foreach (var item in pedido.PedidoItems)
         {
-            carrinho.items.Add(new CarrinhoItemDto
+            carrinho.Items.Add(new CarrinhoItemDto
             {
                 ProdutoId = item.ProdutoId,
                 ProdutoNome = item.ProdutoNome,

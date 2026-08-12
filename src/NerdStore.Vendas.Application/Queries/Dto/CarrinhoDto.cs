@@ -9,6 +9,6 @@ public class CarrinhoDto
     public decimal ValorDesconto { get; set; }
     public string VoucherCodigo { get; set; }
 
-    public List<CarrinhoItemDto> items { get; set; } = new List<CarrinhoItemDto>();
+    public List<CarrinhoItemDto> Items { get; set; } = new List<CarrinhoItemDto>();
     public CarrinhoPagamentoDto Pagamento { get; set; }
 }
