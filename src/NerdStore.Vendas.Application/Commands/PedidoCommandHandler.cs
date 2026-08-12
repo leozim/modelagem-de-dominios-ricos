@@ -47,8 +47,11 @@ public class PedidoCommandHandler :
                         .FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId));
             else
                 _pedidoRepository.AdicionarItem(pedidoItem);
+            
+            pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClientId, pedido.Id, pedido.ValorTotal));
         }
-
+        
+        pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClientId, pedido.Id, message.ProdutoId, message.ValorUnitario, message.Quantidade));
         return await _pedidoRepository.UnitOfWork.Commit();
     }
 

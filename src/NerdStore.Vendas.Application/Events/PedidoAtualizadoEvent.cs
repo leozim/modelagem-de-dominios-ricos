@@ -8,7 +8,7 @@ public class PedidoAtualizadoEvent : Event
     public Guid PedidoId { get; private set; }
     public decimal ValorTotal { get; private set; }
 
-    protected PedidoAtualizadoEvent(Guid clienteId, Guid pedidoId, decimal valorTotal)
+    public PedidoAtualizadoEvent(Guid clienteId, Guid pedidoId, decimal valorTotal)
     {
         ClienteId = clienteId;
         PedidoId = pedidoId;
