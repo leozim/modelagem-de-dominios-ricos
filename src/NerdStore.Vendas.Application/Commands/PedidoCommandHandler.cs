@@ -8,7 +8,10 @@ using NerdStore.Vendas.Domain;
 namespace NerdStore.Vendas.Application.Commands;
 
 public class PedidoCommandHandler :
-    IRequestHandler<AdicionarItemPedidoCommand, bool>
+    IRequestHandler<AdicionarItemPedidoCommand, bool>,
+    IRequestHandler<AtualizarItemPedidoCommand, bool>,
+    IRequestHandler<RemoverItemPedidoCommand, bool>,
+    IRequestHandler<AplicarVoucherPedidoCommand, bool>
 {
     private readonly IPedidoRepository _pedidoRepository;
     private readonly IMediatorHandler _mediatorHandler;
@@ -54,6 +57,21 @@ public class PedidoCommandHandler :
         pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClientId, pedido.Id, message.ProdutoId, message.Nome, message.ValorUnitario, message.Quantidade));
         return await _pedidoRepository.UnitOfWork.Commit();
     }
+    
+    public async Task<bool> Handle(AtualizarItemPedidoCommand message, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<bool> Handle(RemoverItemPedidoCommand message, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<bool> Handle(AplicarVoucherPedidoCommand message, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 
     private bool ValidarComando(Command message)
     {
@@ -66,4 +84,5 @@ public class PedidoCommandHandler :
 
         return false;
     }
+
 }
