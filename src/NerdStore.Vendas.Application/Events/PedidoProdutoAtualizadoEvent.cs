@@ -1,6 +1,6 @@
 ﻿using NerdStore.Core.Messages;
 
-namespace NerdStore.Vendas.Application.Commands;
+namespace NerdStore.Vendas.Application.Events;
 
 public class PedidoProdutoAtualizadoEvent : Event
 {
@@ -11,6 +11,7 @@ public class PedidoProdutoAtualizadoEvent : Event
 
     public  PedidoProdutoAtualizadoEvent(Guid clienteId, Guid pedidoId, Guid produtoId, int quantidade)
     {
+        AggregateId = clienteId;
         ClienteId = clienteId;
         PedidoId = pedidoId;
         ProdutoId = produtoId;
