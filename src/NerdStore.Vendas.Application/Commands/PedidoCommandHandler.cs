@@ -113,6 +113,7 @@ public class PedidoCommandHandler :
         }
         
         pedido.RemoverItem(pedidoItem);
+        pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClientId, pedido.Id, pedido.ValorTotal));
         pedido.AdicionarEvento(new PedidoProdutoRemovidoEvent(message.ClienteId, pedido.Id, message.ProdutoId));
         
         _pedidoRepository.RemoverItem(pedidoItem);

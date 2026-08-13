@@ -10,6 +10,7 @@ public class PedidoProdutoRemovidoEvent : Event
 
     public PedidoProdutoRemovidoEvent(Guid clienteId, Guid pedidoId, Guid produtoId)
     {
+        AggregateId = clienteId;
         ClienteId = clienteId;
         PedidoId = pedidoId;
         ProdutoId = produtoId;
