@@ -83,6 +83,9 @@ public class PedidoCommandHandler :
         
         pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClientId, pedido.Id, pedido.ValorTotal));
         
+        pedido.AdicionarEvento(new PedidoProdutoAtualizadoEvent(message.ClienteId, pedido.Id, message.ProdutoId, message.Quantidade));
+        
+        
         _pedidoRepository.AtualizarItem(pedidoItem);
         _pedidoRepository.Atualizar(pedido);
 
