@@ -91,7 +91,31 @@ public class PedidoCommandHandler :
 
     public async Task<bool> Handle(RemoverItemPedidoCommand message, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        if (!ValidarComando(message)) return false;
+
+        var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(message.ClienteId);
+
+        if (pedido == null)
+        {
+            await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Pedido não encontrado!"));
+            return false;
+        }
+        
+        var pedidoItem = await _pedidoRepository.ObterItemPorPedido(pedido.Id, message.ProdutoId);
+
+        if (pedidoItem != null && !pedido.PedidoItemExistente(pedidoItem))
+        {
+            await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Item do pedido não encontrado!"));
+            return false;
+        }
+        
+        pedido.RemoverItem(pedidoItem);
+        pedido.AdicionarEvento(new PedidoProdutoRemovidoEvent(message.ClienteId, pedido.Id, message.ProdutoId));
+        
+        _pedidoRepository.RemoverItem(pedidoItem);
+        _pedidoRepository.Atualizar(pedido);
+
+        return await _pedidoRepository.UnitOfWork.Commit();
     }
 
     public async Task<bool> Handle(AplicarVoucherPedidoCommand message, CancellationToken cancellationToken)
