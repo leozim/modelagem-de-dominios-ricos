@@ -58,7 +58,7 @@ public class CarrinhoController : ControllerBase
         return RedirectToAction("ProdutoDetalhe", "Vitrine", new {id});
     }
 
-    /*[HttpPost]
+    [HttpPost]
     [Route("remover-item")]
     public async Task<IActionResult> RemoverItem(Guid id)
     {
@@ -107,5 +107,5 @@ public class CarrinhoController : ControllerBase
         }
         
         return View("Index", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
-    }*/
+    }
 }
