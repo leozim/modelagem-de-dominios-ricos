@@ -10,12 +10,12 @@ public class SummaryViewComponent : ViewComponent
 
     public SummaryViewComponent(INotificationHandler<DomainNotification> notifications)
     {
-        _notifications = (DomainNotificationHandler)notifications;
+        _notifications = (DomainNotificationHandler) notifications;
     }
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        var notificacoes = await Task.FromResult((_notifications.ObterNotifications()));
+        var notificacoes = await Task.FromResult(_notifications.ObterNotifications());
         notificacoes.ForEach(c => ViewData.ModelState.AddModelError(string.Empty, c.Value));
 
         return View();

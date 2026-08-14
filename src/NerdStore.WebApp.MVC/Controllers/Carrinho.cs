@@ -9,12 +9,12 @@ namespace NerdStore.WebApp.MVC.Controllers;
 
 public class Carrinho : ControllerBase
 {
-    private readonly IProdutoAppService _produtoAppService;
     private readonly IMediatorHandler _mediatorHandler;
+    private readonly IProdutoAppService _produtoAppService;
 
-    public Carrinho(IProdutoAppService produtoAppService, 
-                    IMediatorHandler mediatorHandler,
-                    INotificationHandler<DomainNotification> notifications) 
+    public Carrinho(IProdutoAppService produtoAppService,
+        IMediatorHandler mediatorHandler,
+        INotificationHandler<DomainNotification> notifications)
         : base(notifications, mediatorHandler)
     {
         _produtoAppService = produtoAppService;
@@ -38,13 +38,13 @@ public class Carrinho : ControllerBase
         if (produto.QuantidadeEstoque < quantidade)
         {
             TempData["Erro"] = "Produto com estoque insuficiente";
-            return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });
+            return RedirectToAction("ProdutoDetalhe", "Vitrine", new {id});
         }
 
         var command = new AdicionarItemPedidoCommand(ClienteId, produto.Id, produto.Nome, quantidade, produto.Valor);
         await _mediatorHandler.EnviarComando(command);
 
         TempData["Erro"] = "Produto indisponível";
-        return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });
+        return RedirectToAction("ProdutoDetalhe", "Vitrine", new {id});
     }
 }

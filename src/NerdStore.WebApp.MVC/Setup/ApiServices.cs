@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using NerdStore.Catalogo.Application.AutoMapper;
 using NerdStore.Catalogo.Data;
 using NerdStore.Vendas.Data;
 using NerdStore.WebApp.MVC.Data;
@@ -13,8 +12,8 @@ public static class ApiServices
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-        
-        
+
+
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -22,7 +21,7 @@ public static class ApiServices
         builder.Services.AddDbContext<CatalogoApplicationContext>(options =>
             options.UseSqlServer(connectionString));
         // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-        
+
         builder.Services.AddDbContext<VendasContext>(options =>
             options.UseSqlServer(connectionString));
         // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -32,11 +31,8 @@ public static class ApiServices
 
         builder.Services.AddControllersWithViews();
 
-        builder.Services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
-        });
-        
+        builder.Services.AddMediatR(config => { config.RegisterServicesFromAssemblies(typeof(Program).Assembly); });
+
         builder.Services.RegisterServices();
     }
 }

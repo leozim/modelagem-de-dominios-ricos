@@ -1,4 +1,4 @@
-﻿using NerdStore.Vendas.Application.Queries.Dto;
+﻿using NerdStore.Vendas.Application.Queries.DTO;
 using NerdStore.Vendas.Domain;
 
 namespace NerdStore.Vendas.Application.Queries;
@@ -26,13 +26,9 @@ public class PedidoQueries : IPedidoQueries
             SubTotal = pedido.Desconto + pedido.ValorTotal
         };
 
-        if (pedido.VoucherId != null)
-        {
-            carrinho.VoucherCodigo = pedido.Voucher.Codigo;
-        }
+        if (pedido.VoucherId != null) carrinho.VoucherCodigo = pedido.Voucher.Codigo;
 
         foreach (var item in pedido.PedidoItems)
-        {
             carrinho.Items.Add(new CarrinhoItemDto
             {
                 ProdutoId = item.ProdutoId,
@@ -41,8 +37,7 @@ public class PedidoQueries : IPedidoQueries
                 ValorUnitario = item.ValorUnitario,
                 ValorTotal = item.ValorUnitario * item.Quantidade
             });
-        }
-        
+
         return carrinho;
     }
 
@@ -52,22 +47,20 @@ public class PedidoQueries : IPedidoQueries
 
         pedidos = pedidos.Where(p => p.PedidoStatus == PedidoStatus.Pago || p.PedidoStatus == PedidoStatus.Cancelado)
             .OrderByDescending(p => p.Codigo);
-        
+
         if (!pedidos.Any()) return null;
 
         var pedidosDto = new List<PedidoDto>();
 
         foreach (var pedido in pedidos)
-        {
             pedidosDto.Add(new PedidoDto
             {
                 ValorTotal = pedido.ValorTotal,
-                PedidoStatus = (int)pedido.PedidoStatus,
+                PedidoStatus = (int) pedido.PedidoStatus,
                 Codigo = pedido.Codigo,
                 DataCadastro = pedido.DataCadastro
             });
-        }
-        
+
         return pedidosDto;
     }
 }

@@ -5,14 +5,14 @@ namespace NerdStore.Vendas.Application.Commands;
 
 public class RemoverItemPedidoCommand : Command
 {
-    public Guid ClienteId { get; private set; }
-    public Guid ProdutoId { get; private set; }
-
     public RemoverItemPedidoCommand(Guid clienteId, Guid produtoId)
     {
         ClienteId = clienteId;
         ProdutoId = produtoId;
     }
+
+    public Guid ClienteId { get; }
+    public Guid ProdutoId { get; }
 
     public override bool EhValido()
     {
@@ -28,7 +28,7 @@ public class RemoverItemPedidoValidation : AbstractValidator<RemoverItemPedidoCo
         RuleFor(c => c.ClienteId)
             .NotEqual(Guid.Empty)
             .WithMessage("Cliente Id invalido");
-        
+
         RuleFor(c => c.ProdutoId)
             .NotEqual(Guid.Empty)
             .WithMessage("Produto Id invalido");

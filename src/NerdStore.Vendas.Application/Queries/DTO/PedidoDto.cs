@@ -1,4 +1,4 @@
-﻿namespace NerdStore.Vendas.Application.Queries.Dto;
+﻿namespace NerdStore.Vendas.Application.Queries.DTO;
 
 public class PedidoDto
 {

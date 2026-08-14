@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-4 item-photo">
-            <img width="400" height="400" src="~/Images/@Model.Imagem" />
+            <img width="400" height="400" src="~/Images/@Model.Imagem"/>
         </div>
         <div class="col-xs-5" style="border:20px solid white">
             <h3>@Model.Nome</h3>
@@ -19,8 +19,8 @@
 
             <div class="section" style="padding-bottom:20px;">
                 <form method="post" asp-controller="AdminProdutos" asp-action="AtualizarEstoque">
-                    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
-                    <input type="text" id="quantidade" name="quantidade" />
+                    <input type="hidden" id="Id" name="Id" value="@Model.Id"/>
+                    <input type="text" id="quantidade" name="quantidade"/>
                     <button class="btn btn-info">Atualizar Estoque</button>
                 </form>
             </div>

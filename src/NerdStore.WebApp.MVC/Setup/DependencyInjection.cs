@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using NerdStore.Catalogo.Application.Services;
-using NerdStore.Catalogo.Data;
 using NerdStore.Catalogo.Data.Repository;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
@@ -21,10 +20,10 @@ public static class DependencyInjection
     {
         // (Mediator)
         services.AddScoped<IMediatorHandler, MediatorHandler>();
-        
+
         // Notifications
         services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
-        
+
         // Catalogo
         services.AddScoped<IProdutoRepository, ProdutoRepository>();
         services.AddScoped<IProdutoAppService, ProdutoAppService>();
@@ -32,12 +31,12 @@ public static class DependencyInjection
         // services.AddScoped<CatalogoApplicationContext>();
 
         services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();
-        
+
         // Vendas
         services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
         services.AddScoped<IPedidoRepository, PedidoRepository>();
         services.AddScoped<IPedidoQueries, PedidoQueries>();
-        
+
         services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
         services.AddScoped<IRequestHandler<AtualizarItemPedidoCommand, bool>, PedidoCommandHandler>();
         services.AddScoped<IRequestHandler<RemoverItemPedidoCommand, bool>, PedidoCommandHandler>();
@@ -46,6 +45,5 @@ public static class DependencyInjection
         services.AddScoped<INotificationHandler<PedidoRascunhoIniciadoEvent>, PedidoEventHandler>();
         services.AddScoped<INotificationHandler<PedidoAtualizadoEvent>, PedidoEventHandler>();
         services.AddScoped<INotificationHandler<PedidoItemAdicionadoEvent>, PedidoEventHandler>();
-        
     }
 }

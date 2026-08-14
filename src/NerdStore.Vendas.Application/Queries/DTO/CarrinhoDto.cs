@@ -1,4 +1,4 @@
-﻿namespace NerdStore.Vendas.Application.Queries.Dto;
+﻿namespace NerdStore.Vendas.Application.Queries.DTO;
 
 public class CarrinhoDto
 {
@@ -9,6 +9,6 @@ public class CarrinhoDto
     public decimal ValorDesconto { get; set; }
     public string VoucherCodigo { get; set; }
 
-    public List<CarrinhoItemDto> Items { get; set; } = new List<CarrinhoItemDto>();
+    public List<CarrinhoItemDto> Items { get; set; } = new();
     public CarrinhoPagamentoDto Pagamento { get; set; }
 }

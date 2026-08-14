@@ -30,10 +30,10 @@
         transition: all 0.5s;
     }
 
-        .thumbnail:hover {
-            opacity: 1.00;
-            box-shadow: 0px 0px 10px #4bc6ff;
-        }
+    .thumbnail:hover {
+        opacity: 1.00;
+        box-shadow: 0px 0px 10px #4bc6ff;
+    }
 
     .line {
         margin-bottom: 5px;
@@ -63,30 +63,32 @@
 <div class="container">
 
     <h1>Administração de Produtos</h1>
-    <hr />
+    <hr/>
     <div class="row">
         <a asp-controller="AdminProdutos" asp-action="NovoProduto" class="btn btn-success right">+ Adicionar Novo</a>
     </div>
-    <hr />
+    <hr/>
     <div class="row">
         <!-- BEGIN PRODUCTS -->
         @{
             foreach (var produto in Model.OrderBy(p => p.CategoriaId))
             {
-            <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                 <span class="thumbnail">
-                    <img width="200" height="200" src="~/Images/@produto.Imagem" />
+                    <img width="200" height="200" src="~/Images/@produto.Imagem"/>
                     <h4>@produto.Nome</h4>
                     <p>@produto.QuantidadeEstoque em estoque</p>
                     <p>@produto.Descricao</p>
                     <p class="price">@produto.Valor.ToString("C")</p>
                     <hr class="line">
                     <div class="row">
-                        <a asp-controller="AdminProdutos" asp-action="AtualizarProduto" asp-route-id="@produto.Id" class="btn btn-success right">Editar</a> &nbsp;
-                        <a asp-controller="AdminProdutos" asp-action="AtualizarEstoque" asp-route-id="@produto.Id" class="btn btn-info right">Estoque</a>
+                        <a asp-controller="AdminProdutos" asp-action="AtualizarProduto" asp-route-id="@produto.Id"
+                           class="btn btn-success right">Editar</a> &nbsp;
+                        <a asp-controller="AdminProdutos" asp-action="AtualizarEstoque" asp-route-id="@produto.Id"
+                           class="btn btn-info right">Estoque</a>
                     </div>
                 </span>
-            </div>
+                </div>
             }
         }
 

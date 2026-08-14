@@ -7,7 +7,7 @@ namespace NerdStore.WebApp.MVC.Controllers.Admin;
 public class AdminProdutosController : Controller
 {
     private readonly IProdutoAppService _produtoAppService;
-    
+
     public AdminProdutosController(IProdutoAppService produtoAppService)
     {
         _produtoAppService = produtoAppService;
@@ -31,12 +31,12 @@ public class AdminProdutosController : Controller
     public async Task<IActionResult> NovoProduto(ProdutoDto produtoDto)
     {
         if (!ModelState.IsValid) return View(await PopularCategorias(produtoDto));
-        
+
         await _produtoAppService.AdicionarProduto(produtoDto);
 
         return RedirectToAction("Index");
     }
-    
+
     [HttpGet]
     [Route("editar-produto")]
     public async Task<IActionResult> AtualizarProduto(Guid id)
@@ -58,7 +58,7 @@ public class AdminProdutosController : Controller
 
         return RedirectToAction("Index");
     }
-    
+
     [HttpGet]
     [Route("produtos-atualizar-estoque")]
     public async Task<IActionResult> AtualizarEstoque(Guid id)
@@ -71,13 +71,9 @@ public class AdminProdutosController : Controller
     public async Task<IActionResult> AtualizarEstoque(Guid id, int quantidade)
     {
         if (quantidade > 0)
-        {
             await _produtoAppService.ReporEstoque(id, quantidade);
-        }
         else
-        {
             await _produtoAppService.DebitarEstoque(id, quantidade);
-        }
 
         return View("Index", await _produtoAppService.ObterTodos());
     }

@@ -5,16 +5,16 @@ namespace NerdStore.Vendas.Application.Commands;
 
 public class AtualizarItemPedidoCommand : Command
 {
-    public Guid ClienteId { get; private set; }
-    public Guid ProdutoId { get; private set; }
-    public int Quantidade { get; private set; }
-
     public AtualizarItemPedidoCommand(Guid clienteId, Guid produtoId, int quantidade)
     {
         ClienteId = clienteId;
         ProdutoId = produtoId;
         Quantidade = quantidade;
     }
+
+    public Guid ClienteId { get; }
+    public Guid ProdutoId { get; }
+    public int Quantidade { get; }
 
     public override bool EhValido()
     {
@@ -30,11 +30,11 @@ public class AtualizarItemPedidoValidation : AbstractValidator<AtualizarItemPedi
         RuleFor(c => c.ClienteId)
             .NotEqual(Guid.Empty)
             .WithMessage("Cliente Id invalido");
-        
+
         RuleFor(c => c.ProdutoId)
             .NotEqual(Guid.Empty)
             .WithMessage("Produto Id invalido");
-        
+
         RuleFor(c => c.Quantidade)
             .GreaterThan(0)
             .WithMessage("A quantidade mínima de um item é 1");

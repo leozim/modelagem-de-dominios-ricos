@@ -43,7 +43,7 @@ public class Pedido : Entity, IAgregateRoot
     {
         var validationResult = voucher.ValidarSeAplicavel();
         if (!validationResult.IsValid) return validationResult;
-        
+
         Voucher = voucher;
         VoucherUtilizado = true;
         CalcularValorPedido();

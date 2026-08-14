@@ -1,9 +1,4 @@
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using NerdStore.Catalogo.Application.AutoMapper;
-using NerdStore.Catalogo.Data;
-using NerdStore.WebApp.MVC.Data;
 using NerdStore.WebApp.MVC.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,8 +29,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Vitrine}/{action=Index}/{id?}");
+    "default",
+    "{controller=Vitrine}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

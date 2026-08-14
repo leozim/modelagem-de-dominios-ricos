@@ -1,4 +1,4 @@
-﻿namespace NerdStore.Vendas.Application.Queries.Dto;
+﻿namespace NerdStore.Vendas.Application.Queries.DTO;
 
 public class CarrinhoItemDto
 {
@@ -7,5 +7,4 @@ public class CarrinhoItemDto
     public int Quantidade { get; set; }
     public decimal ValorUnitario { get; set; }
     public decimal ValorTotal { get; set; }
-    
 }

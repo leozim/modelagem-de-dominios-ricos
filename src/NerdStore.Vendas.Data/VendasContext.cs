@@ -9,7 +9,7 @@ namespace NerdStore.Vendas.Data;
 public class VendasContext : DbContext, IUnitOfWork
 {
     private readonly IMediatorHandler _mediatorHandler;
-    
+
     public VendasContext(DbContextOptions<VendasContext> options, IMediatorHandler mediatorHandler)
         : base(options)
     {
@@ -32,7 +32,7 @@ public class VendasContext : DbContext, IUnitOfWork
 
         var sucesso = await base.SaveChangesAsync() > 0;
         if (sucesso) await _mediatorHandler.PublicarEventos(this);
-        
+
         return sucesso;
     }
 

@@ -1,4 +1,4 @@
-﻿using NerdStore.Vendas.Application.Queries.Dto;
+﻿using NerdStore.Vendas.Application.Queries.DTO;
 
 namespace NerdStore.Vendas.Application.Queries;
 

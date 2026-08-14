@@ -86,14 +86,14 @@
         display: inline-flex;
     }
 
-        div.section > div > input {
-            margin: 0;
-            padding-left: 5px;
-            font-size: 10px;
-            padding-right: 5px;
-            max-width: 18%;
-            text-align: center;
-        }
+    div.section > div > input {
+        margin: 0;
+        padding-left: 5px;
+        font-size: 10px;
+        padding-right: 5px;
+        max-width: 18%;
+        text-align: center;
+    }
 
     .attr, .attr2 {
         cursor: pointer;
@@ -105,31 +105,31 @@
         border-radius: 2px;
     }
 
-        .attr.active, .attr2.active {
-            border: 1px solid orange;
-        }
+    .attr.active, .attr2.active {
+        border: 1px solid orange;
+    }
 
     @@media (max-width: 426px) {
         .container {
             margin-top: 0px !important;
         }
 
-            .container > .row {
-                padding: 0 !important;
-            }
+        .container > .row {
+            padding: 0 !important;
+        }
 
-                .container > .row > .col-xs-12.col-sm-5 {
-                    padding-right: 0;
-                }
+        .container > .row > .col-xs-12.col-sm-5 {
+            padding-right: 0;
+        }
 
-                .container > .row > .col-xs-12.col-sm-9 > div > p {
-                    padding-left: 0 !important;
-                    padding-right: 0 !important;
-                }
+        .container > .row > .col-xs-12.col-sm-9 > div > p {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
 
-                .container > .row > .col-xs-12.col-sm-9 > div > ul {
-                    padding-left: 10px !important;
-                }
+        .container > .row > .col-xs-12.col-sm-9 > div > ul {
+            padding-left: 10px !important;
+        }
 
         .section {
             width: 104%;
@@ -141,8 +141,8 @@
     }
 </style>
 <div class="container">
-    
-    <vc:summary />
+
+    <vc:summary/>
 
     <div class="row">
         <div class="col-xs-4 item-photo">
@@ -172,7 +172,9 @@
 
                 <!-- Botoes de compra -->
                 <div class="section" style="padding-bottom: 20px;">
-                    <button type="submit" class="btn btn-success"><span style="margin-right: 20px" aria-hidden="true"></span> Comprar agora!</button>
+                    <button type="submit" class="btn btn-success"><span style="margin-right: 20px"
+                                                                        aria-hidden="true"></span> Comprar agora!
+                    </button>
                 </div>
             </form>
         </div>
@@ -183,14 +185,14 @@
 @section Scripts
 {
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             //-- Click on detail
-            $("ul.menu-items > li").on("click",function(){
+            $("ul.menu-items > li").on("click", function () {
                 $("ul.menu-items > li").removeClass("active");
                 $(this).addClass("active");
             })
 
-            $(".attr,.attr2").on("click",function(){
+            $(".attr,.attr2").on("click", function () {
                 var clase = $(this).attr("class");
 
                 $("." + clase).removeClass("active");
@@ -198,20 +200,22 @@
             })
 
             //-- Click on QUANTITY
-            $(".btn-minus").on("click",function(){
+            $(".btn-minus").on("click", function () {
                 var now = $(".section > div > input").val();
-                if ($.isNumeric(now)){
-                    if (parseInt(now) -1 > 0){ now--;}
+                if ($.isNumeric(now)) {
+                    if (parseInt(now) - 1 > 0) {
+                        now--;
+                    }
                     $(".section > div > input").val(now);
-                }else{
+                } else {
                     $(".section > div > input").val("1");
                 }
             })
-            $(".btn-plus").on("click",function(){
+            $(".btn-plus").on("click", function () {
                 var now = $(".section > div > input").val();
-                if ($.isNumeric(now)){
-                    $(".section > div > input").val(parseInt(now)+1);
-                }else{
+                if ($.isNumeric(now)) {
+                    $(".section > div > input").val(parseInt(now) + 1);
+                } else {
                     $(".section > div > input").val("1");
                 }
             })

@@ -4,10 +4,6 @@ namespace NerdStore.Vendas.Application.Events;
 
 public class PedidoProdutoRemovidoEvent : Event
 {
-    public Guid ClienteId { get; private set; }
-    public Guid PedidoId { get; private set; }
-    public Guid ProdutoId { get; private set; }
-
     public PedidoProdutoRemovidoEvent(Guid clienteId, Guid pedidoId, Guid produtoId)
     {
         AggregateId = clienteId;
@@ -15,4 +11,8 @@ public class PedidoProdutoRemovidoEvent : Event
         PedidoId = pedidoId;
         ProdutoId = produtoId;
     }
+
+    public Guid ClienteId { get; private set; }
+    public Guid PedidoId { get; private set; }
+    public Guid ProdutoId { get; private set; }
 }
