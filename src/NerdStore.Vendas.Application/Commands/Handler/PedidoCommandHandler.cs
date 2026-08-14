@@ -11,7 +11,8 @@ public class PedidoCommandHandler :
     IRequestHandler<AdicionarItemPedidoCommand, bool>,
     IRequestHandler<AtualizarItemPedidoCommand, bool>,
     IRequestHandler<RemoverItemPedidoCommand, bool>,
-    IRequestHandler<AplicarVoucherPedidoCommand, bool>
+    IRequestHandler<AplicarVoucherPedidoCommand, bool>,
+    IRequestHandler<IniciarPedidoCommand, bool>
 {
     private readonly IMediatorHandler _mediatorHandler;
     private readonly IPedidoRepository _pedidoRepository;
@@ -162,6 +163,18 @@ public class PedidoCommandHandler :
 
         return await _pedidoRepository.UnitOfWork.Commit();
     }
+    
+    public async Task<bool> Handle(IniciarPedidoCommand message, CancellationToken cancellationToken)
+    {
+        if (!ValidarComando(message)) return false;
+        
+        var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(message.ClienteId);
+        pedido.IniciarPedido();
+        
+        
+        _pedidoRepository.Atualizar(pedido);
+        return await _pedidoRepository.UnitOfWork.Commit();
+    }
 
     private bool ValidarComando(Command message)
     {
@@ -172,4 +185,5 @@ public class PedidoCommandHandler :
 
         return false;
     }
+
 }
