@@ -23,6 +23,12 @@ public class IniciarPedidoCommand : Command
         ExpiracaoCartao = expiracaoCartao;
         CvvCartao = cvvCartao;
     }
+
+    public override bool EhValido()
+    {
+        ValidationResult = new IniciarPedidoCommandValidator().Validate(this);
+        return ValidationResult.IsValid;
+    }
 }
 
 public class IniciarPedidoCommandValidator : AbstractValidator<IniciarPedidoCommand>
