@@ -5,7 +5,7 @@ using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Events;
 using NerdStore.Vendas.Domain;
 
-namespace NerdStore.Vendas.Application.Commands;
+namespace NerdStore.Vendas.Application.Commands.Handler;
 
 public class PedidoCommandHandler :
     IRequestHandler<AdicionarItemPedidoCommand, bool>,
@@ -124,7 +124,42 @@ public class PedidoCommandHandler :
 
     public async Task<bool> Handle(AplicarVoucherPedidoCommand message, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        if (!ValidarComando(message)) return false;
+
+        var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(message.ClienteId);
+
+        if (pedido == null)
+        {
+            await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Pedido não encontrado!"));
+            return false;
+        }
+
+        var voucher = await _pedidoRepository.ObterVoucherPorCodigo(message.CodigoVoucher);
+
+        if (voucher == null)
+        {
+            await _mediatorHandler.PublicarNotificacao(new DomainNotification("pedido", "Voucher não encontrado!"));
+            return false;
+        }
+
+        var voucherAplicacaoValidation = pedido.AplicarVoucher(voucher);
+        if (!voucherAplicacaoValidation.IsValid)
+        {
+            foreach (var error in voucherAplicacaoValidation.Errors)
+            {
+                await _mediatorHandler
+                    .PublicarNotificacao(new DomainNotification(error.ErrorCode, error.ErrorMessage));
+            }
+
+            return false;
+        }
+        
+        pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClientId, pedido.Id, pedido.ValorTotal));
+        pedido.AdicionarEvento(new VoucherAplicadoPedidoEvent(message.ClienteId, pedido.Id, voucher.Id));
+        
+        _pedidoRepository.Atualizar(pedido);
+
+        return await _pedidoRepository.UnitOfWork.Commit();
     }
 
     private bool ValidarComando(Command message)
