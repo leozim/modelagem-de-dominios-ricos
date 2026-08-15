@@ -2,5 +2,5 @@
 
 public interface IConfigurationManager
 {
-    
+    string Getvalue(string node);
 }
