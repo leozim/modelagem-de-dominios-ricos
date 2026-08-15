@@ -30,7 +30,7 @@ public class PagamentoService : IPagamentoService
         {
             Valor = pagamentoPedidoDto.Total,
             NomeCartao = pagamentoPedidoDto.NomeCartao,
-            NumeroCartaao = pagamentoPedidoDto.NumeroCartao,
+            NumeroCartao = pagamentoPedidoDto.NumeroCartao,
             ExpiracaoCartao = pagamentoPedidoDto.ExpiracaoCartao,
             CvvCartao = pagamentoPedidoDto.CvvCartao,
             PedidoId = pagamentoPedidoDto.PedidoId

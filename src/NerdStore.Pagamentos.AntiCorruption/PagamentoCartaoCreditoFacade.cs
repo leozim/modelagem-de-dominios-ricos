@@ -19,7 +19,7 @@ public class PagamentoCartaoCreditoFacade : IPagamentoCartaoCreditoFacade
         var encriptionKey = _configurationManager.Getvalue("encriptionKey");
 
         var serviceKey = _payPalGateway.GetPayPalServiceKey(apiKey, encriptionKey);
-        var cardHashKey = _payPalGateway.GetCardHashKey(serviceKey, pagamento.NumeroCartaao);
+        var cardHashKey = _payPalGateway.GetCardHashKey(serviceKey, pagamento.NumeroCartao);
 
         var pagamentoResult = _payPalGateway.CommitTransaction(cardHashKey, pedido.Id.ToString(), pagamento.Valor);
         

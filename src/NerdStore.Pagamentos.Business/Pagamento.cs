@@ -9,7 +9,7 @@ public class Pagamento : Entity, IAgregateRoot
     public decimal Valor { get; set; }
     
     public string NomeCartao { get; set; }
-    public string NumeroCartaao { get; set; }
+    public string NumeroCartao { get; set; }
     public string ExpiracaoCartao { get; set; }
     public string CvvCartao { get; set; }
     
