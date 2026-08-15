@@ -176,7 +176,7 @@ public class PedidoCommandHandler :
 
         var itensList = new List<Item>();
         pedido.PedidoItems.ForEach(i => itensList.Add(new Item { Id = i.ProdutoId, Quantidade = i.Quantidade }));
-        var listaProdutosPedido = new ListaProdutosPedido {PedidoId = pedido.Id, Itens = itensList};
+        var listaProdutosPedido = new ListaProdutosPedidoDTO {PedidoId = pedido.Id, Itens = itensList};
         
         pedido.AdicionarEvento(new PedidoIniciadoEvent(pedido.Id, pedido.ClientId, pedido.ValorTotal, listaProdutosPedido, message.NomeCartao, message.NumeroCartao, message.ExpiracaoCartao, message.CvvCartao));
         

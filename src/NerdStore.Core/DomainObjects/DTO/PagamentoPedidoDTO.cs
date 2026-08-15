@@ -1,6 +1,6 @@
 ﻿namespace NerdStore.Core.DomainObjects.DTO;
 
-public class PagamentoPedido
+public class PagamentoPedidoDTO
 {
     public Guid PedidoId { get; set; }
     public Guid ClienteId { get; set; }

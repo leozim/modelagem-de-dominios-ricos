@@ -5,7 +5,7 @@ namespace NerdStore.Catalogo.Domain;
 public interface IEstoqueService : IDisposable
 {
     Task<bool> DebitarEstoque(Guid produtoId, int quantidade);
-    Task<bool> DebitarListaProdutosPedido(ListaProdutosPedido lista);
+    Task<bool> DebitarListaProdutosPedido(ListaProdutosPedidoDTO lista);
     Task<bool> ReporEstoque(Guid produtoId, int quantidade);
-    Task<bool> ReporListaProdutosPedido(ListaProdutosPedido lista);
+    Task<bool> ReporListaProdutosPedido(ListaProdutosPedidoDTO lista);
 }

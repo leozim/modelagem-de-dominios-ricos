@@ -24,7 +24,7 @@ public class EstoqueService : IEstoqueService
             return await _produtoRepository.UnitOfWork.Commit();
         }
 
-        public async Task<bool> DebitarListaProdutosPedido(ListaProdutosPedido lista)
+        public async Task<bool> DebitarListaProdutosPedido(ListaProdutosPedidoDTO lista)
         {
             foreach (var item in lista.Itens)
             {
@@ -58,7 +58,7 @@ public class EstoqueService : IEstoqueService
             return true;
         }
 
-        public async Task<bool> ReporListaProdutosPedido(ListaProdutosPedido lista)
+        public async Task<bool> ReporListaProdutosPedido(ListaProdutosPedidoDTO lista)
         {
             foreach (var item in lista.Itens)
             {

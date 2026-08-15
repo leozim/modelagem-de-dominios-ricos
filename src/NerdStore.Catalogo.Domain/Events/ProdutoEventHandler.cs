@@ -31,11 +31,11 @@ public class ProdutoEventHandler :
     // Evento de Integração de contextos por isso está em Core
     public async Task Handle(PedidoIniciadoEvent mensagem, CancellationToken cancellationToken)
     {
-        var result = await _estoqueService.DebitarListaProdutosPedido(mensagem.ProdutosPedido);
+        var result = await _estoqueService.DebitarListaProdutosPedido(mensagem.ProdutosPedidoDto);
 
         if (result)
         {
-            await _mediatorHandler.PublicarEvento(new PedidoEstoqueConfirmadoEvent(mensagem.PedidoId, mensagem.ClienteId, mensagem.Total, mensagem.ProdutosPedido, mensagem.NomeCartao, mensagem.NumeroCartao, mensagem.ExpiracaoCartao, mensagem.CvvCartao));
+            await _mediatorHandler.PublicarEvento(new PedidoEstoqueConfirmadoEvent(mensagem.PedidoId, mensagem.ClienteId, mensagem.Total, mensagem.ProdutosPedidoDto, mensagem.NomeCartao, mensagem.NumeroCartao, mensagem.ExpiracaoCartao, mensagem.CvvCartao));
         }
         else
         {
