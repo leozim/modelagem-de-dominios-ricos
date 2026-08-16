@@ -16,7 +16,7 @@ public class PagamentoContext : DbContext, IUnitOfWork
     {
         _mediatorhandler = mediatorhandler ?? throw new ArgumentNullException(nameof(mediatorhandler));
     }
-
+    
     public DbSet<Pagamento> Pagamentos { get; set; }
     public DbSet<Transacao> Transacoes { get; set; }
 
@@ -26,7 +26,7 @@ public class PagamentoContext : DbContext, IUnitOfWork
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Property("DataCadastrp").CurrentValue = DateTime.Now;
+                entry.Property("DataCadastro").CurrentValue = DateTime.Now;
             }
 
             if (entry.State == EntityState.Modified)
