@@ -17,7 +17,8 @@ public class PedidoCommandHandler :
     IRequestHandler<AplicarVoucherPedidoCommand, bool>,
     IRequestHandler<IniciarPedidoCommand, bool>,
     IRequestHandler<FinalizarPedidoCommand, bool>,
-    IRequestHandler<CancelarProcessamentoPedidoEstornarEstoqueCommand, bool>
+    IRequestHandler<CancelarProcessamentoPedidoEstornarEstoqueCommand, bool>,
+    IRequestHandler<CancelarProcessamentoPedidoCommand, bool>
 {
     private readonly IMediatorHandler _mediatorHandler;
     private readonly IPedidoRepository _pedidoRepository;
@@ -222,6 +223,21 @@ public class PedidoCommandHandler :
         return await _pedidoRepository.UnitOfWork.Commit();
     }
     
+    public async Task<bool> Handle(CancelarProcessamentoPedidoCommand message, CancellationToken cancellationToken)
+    {
+        var pedido = await _pedidoRepository.ObterPorId(message.PedidoId);
+
+        if (pedido == null)
+        {
+            await _mediatorHandler.PublicarNotificacao(new DomainNotification("produto", "Pedido não encontrado"));
+            return false;
+        }
+
+        pedido.TornarRascunho();
+        
+        return await _pedidoRepository.UnitOfWork.Commit(); 
+    }
+    
     private bool ValidarComando(Command message)
     {
         if (message.EhValido()) return true;
@@ -231,5 +247,4 @@ public class PedidoCommandHandler :
 
         return false;
     }
-
 }

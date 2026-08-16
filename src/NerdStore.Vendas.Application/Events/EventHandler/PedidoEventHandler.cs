@@ -36,10 +36,10 @@ public class PedidoEventHandler :
         return Task.CompletedTask;
     }
     
-    public Task Handle(PedidoEstoqueRejeitadoEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(PedidoEstoqueRejeitadoEvent mensagem, CancellationToken cancellationToken)
     {
         // cancelar o rpocessamento do pedido - retornar erro para o cliente
-        return Task.CompletedTask;
+        await _mediatorHandler.EnviarComando(new CancelarProcessamentoPedidoCommand(mensagem.PedidoId, mensagem.ClienteId));
     }
 
     public async Task Handle(PagamentoRealizadoEvent mensagem, CancellationToken cancellationToken)
