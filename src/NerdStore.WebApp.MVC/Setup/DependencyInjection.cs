@@ -5,12 +5,17 @@ using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Pagamentos.AntiCorruption;
+using NerdStore.Pagamentos.Business;
+using NerdStore.Pagamentos.Data.Repository;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Vendas.Application.Commands.Handler;
 using NerdStore.Vendas.Application.Events;
 using NerdStore.Vendas.Application.Queries;
 using NerdStore.Vendas.Data.Repository;
 using NerdStore.Vendas.Domain;
+using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
+using IConfigurationManager = Microsoft.Extensions.Configuration.IConfigurationManager;
 
 namespace NerdStore.WebApp.MVC.Setup;
 
@@ -45,5 +50,12 @@ public static class DependencyInjection
         services.AddScoped<INotificationHandler<PedidoRascunhoIniciadoEvent>, PedidoEventHandler>();
         services.AddScoped<INotificationHandler<PedidoAtualizadoEvent>, PedidoEventHandler>();
         services.AddScoped<INotificationHandler<PedidoItemAdicionadoEvent>, PedidoEventHandler>();
+        
+        // Pagamentos
+        services.AddScoped<IPagamentoRepository, PagamentoRepository>();
+        services.AddScoped<IPagamentoService, PagamentoService>();
+        services.AddScoped<IPagamentoCartaoCreditoFacade, PagamentoCartaoCreditoFacade>();
+        services.AddScoped<IPayPalGateway, PayPalGateway>();
+        services.AddScoped<IConfigurationManager, ConfigurationManager>();
     }
 }
