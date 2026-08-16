@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NerdStore.Catalogo.Data;
+using NerdStore.Pagamentos.Data;
 using NerdStore.Vendas.Data;
 using NerdStore.WebApp.MVC.Data;
 
@@ -25,6 +26,9 @@ public static class ApiServices
         builder.Services.AddDbContext<VendasContext>(options =>
             options.UseSqlServer(connectionString));
         // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+        
+        builder.Services.AddDbContext<PagamentoContext>(options => 
+            options.UseSqlServer(connectionString));
 
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>();
