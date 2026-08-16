@@ -7,7 +7,8 @@ namespace NerdStore.Catalogo.Domain.Events;
 public class ProdutoEventHandler : 
     INotificationHandler<ProdutoAbaixoEstoqueEvent>,
     INotificationHandler<PedidoIniciadoEvent>,
-    INotificationHandler<PedidoEstoqueRejeitadoEvent>
+    INotificationHandler<PedidoEstoqueRejeitadoEvent>,
+    INotificationHandler<PedidoProcessamnetoCanceladoEvent>
 {
     private readonly IProdutoRepository _produtoRepository;
     private readonly IEstoqueService _estoqueService;
@@ -45,7 +46,12 @@ public class ProdutoEventHandler :
 
     public Task Handle(PedidoEstoqueRejeitadoEvent notification, CancellationToken cancellationToken)
     {
-        // TODO: cancelar o processamento do pedido - retprmar erro para o cliente
+        // TODO: cancelar o processamento do pedido - retormar erro para o cliente
         return Task.CompletedTask;
+    }
+
+    public async Task Handle(PedidoProcessamnetoCanceladoEvent message, CancellationToken cancellationToken)
+    {
+        await _estoqueService.ReporListaProdutosPedido(message.ListaProdutosPedidoDto);
     }
 }

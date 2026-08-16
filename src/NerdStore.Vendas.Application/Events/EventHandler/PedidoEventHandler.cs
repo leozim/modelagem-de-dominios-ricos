@@ -11,7 +11,8 @@ public class PedidoEventHandler :
     INotificationHandler<PedidoItemAdicionadoEvent>,
     INotificationHandler<PedidoEstoqueRejeitadoEvent>,
     INotificationHandler<PagamentoRealizadoEvent>,
-    INotificationHandler<PagamentoRecusadoEvent>
+    INotificationHandler<PagamentoRecusadoEvent>,
+    INotificationHandler<PedidoFinalizadoEvent>
 {
     private readonly IMediatorHandler _mediatorHandler;
 
@@ -44,6 +45,11 @@ public class PedidoEventHandler :
     public async Task Handle(PagamentoRealizadoEvent mensagem, CancellationToken cancellationToken)
     {
         await _mediatorHandler.EnviarComando(new FinalizarPedidoCommand(mensagem.PedidoId, mensagem.ClienteId));
+    }
+    
+    public async Task Handle(PedidoFinalizadoEvent mensagem, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task Handle(PagamentoRecusadoEvent mensagem, CancellationToken cancellationToken)
