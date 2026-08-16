@@ -11,6 +11,7 @@ using NerdStore.Pagamentos.Data.Repository;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Vendas.Application.Commands.Handler;
 using NerdStore.Vendas.Application.Events;
+using NerdStore.Vendas.Application.Events.EventHandler;
 using NerdStore.Vendas.Application.Queries;
 using NerdStore.Vendas.Data.Repository;
 using NerdStore.Vendas.Domain;
