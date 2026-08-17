@@ -1,10 +1,14 @@
-﻿namespace NerdStore.Pagamentos.AntiCorruption;
+﻿using System;
+using System.Linq;
 
-public class ConfigurationManager : IConfigurationManager
+namespace NerdStore.Pagamentos.AntiCorruption
 {
-    public string Getvalue(string node)
+    public class ConfigurationManager : IConfigurationManager
     {
-        return new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 10)
-            .Select(s => s[new Random().Next(s.Length)]).ToArray());
+        public string GetValue(string node)
+        {
+            return new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 10)
+                .Select(s => s[new Random().Next(s.Length)]).ToArray());
+        }
     }
 }

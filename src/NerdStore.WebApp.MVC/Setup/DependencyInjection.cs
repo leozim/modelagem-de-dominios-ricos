@@ -17,8 +17,8 @@ using NerdStore.Vendas.Application.Events.EventHandler;
 using NerdStore.Vendas.Application.Queries;
 using NerdStore.Vendas.Data.Repository;
 using NerdStore.Vendas.Domain;
-using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
-using IConfigurationManager = Microsoft.Extensions.Configuration.IConfigurationManager;
+using ConfigurationManager = NerdStore.Pagamentos.AntiCorruption.ConfigurationManager;
+using IConfigurationManager = NerdStore.Pagamentos.AntiCorruption.IConfigurationManager;
 
 namespace NerdStore.WebApp.MVC.Setup;
 
